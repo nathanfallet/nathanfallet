@@ -1,0 +1,12 @@
+#extend("template"):
+    #export("content"):
+        <div class="container sections-wrapper">
+            <section class="section">
+                <div class="section-inner">
+                    <h1>Error 404 - Not found</h1>
+                    <p>We are sorry but the page you are looking for does not exist!</p>
+                </div>
+            </section>
+        </div>
+    #endexport
+#endextend

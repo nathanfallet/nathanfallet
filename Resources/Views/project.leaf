@@ -1,0 +1,41 @@
+#extend("template"):
+    #export("content"):
+        <div class="container sections-wrapper">
+            <div class="row">
+                <div class="primary col-lg-9 col-12">
+                    <section class="section">
+                        <div class="section-inner">
+                            <h2 class="heading">#(project.name)</h2>
+                            <div class="content">
+                                #unsafeHTML(project.description)
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="secondary col-lg-3 col-12" align="center">
+                    <section class="section">
+                        <div class="section-inner">
+                            <h2 class="heading">Information & links</h2>
+                            #if(project.data.file):
+                                <p><a href="/files/#(project.data.file._0)" class="btn btn-success">Download</a></p>
+                            #elseif(project.data.app):
+                                #if(project.data.app._0):
+                                <p><a href="#(project.data.app._0)" target="_blank"><img src="/img/google-play-badge.png" style="max-width: 80%;" /></a></p>
+                                #endif
+                                #if(project.data.app._1):
+                                <p><a href="#(project.data.app._1)" target="_blank"><img src="/img/app-store-badge.png" style="max-width: 80%;" /></a></p>
+                                #endif
+                            #endif
+                            #if(project.version):
+                                <p>Version: #(project.version)</p>
+                            #endif
+                            #if(project.github):
+                                <p><a href="#(project.github)" target="_blank">Show on GitHub</a></p>
+                            #endif
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    #endexport
+#endextend
