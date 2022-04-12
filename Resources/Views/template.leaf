@@ -45,7 +45,7 @@
 
         #if(snippets):
             #for(snippet in snippets):
-                <script type="application/ld+json">#(snippet)</script>
+                <script type="application/ld+json">#unsafeHTML(snippet)</script>
             #endfor
         #endif
     </head>
