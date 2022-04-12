@@ -4,6 +4,9 @@ import LeafErrorMiddleware
 
 // configures your application
 public func configure(_ app: Application) throws {
+    // Get port
+    app.http.server.configuration.port = Int(Environment.get("PORT") ?? "8080") ?? 8080
+    
     // Error middleware
     app.middleware.use(LeafErrorMiddleware(contextGenerator: ErrorController.contextGenerator))
     
