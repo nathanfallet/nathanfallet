@@ -256,6 +256,12 @@ let opensource_maintainer: [OpenSourceRepository] = [
         github: "https://github.com/GroupeMINASTE/DigiAnalytics"
     ),
     OpenSourceRepository(
+        id: "unlockpremium",
+        name: "UnlockPremium",
+        description: "A package to include a standard \"Unlock premium\" view in iOS and Android apps",
+        github: "https://github.com/GroupeMINASTE/UnlockPremium"
+    ),
+    OpenSourceRepository(
         id: "donateviewcontroller",
         name: "DonateViewController",
         description: "A view controller to make donations.",
