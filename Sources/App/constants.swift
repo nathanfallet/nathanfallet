@@ -12,13 +12,13 @@ import Foundation
 let projects: [Project] = [
     Project(
         id: "converty",
-        name: "Converty: Number conversion",
+        name: "BaseConverter: Converty",
         description_little: "The fast and easy way to convert numbers with tons of possibilities!",
         description: "",
         last_update: "2022-02-12 10:00:00",
         data: .app(
             "https://play.google.com/store/apps/details?id=me.nathanfallet.converty",
-            "https://apps.apple.com/app/converty-number-conversion/id1609456234"
+            "https://apps.apple.com/app/base-converter-converty/id1609456234"
         ),
         img: "https://www.nathanfallet.me/img/project-converty.jpg",
         version: "1.0"
@@ -272,6 +272,12 @@ let opensource_maintainer: [OpenSourceRepository] = [
         name: "SQLite.swift",
         description: "A type-safe, Swift-language layer over SQLite3.",
         github: "https://github.com/stephencelis/SQLite.swift"
+    ),
+    OpenSourceRepository(
+        id: "vapor-sitemap",
+        name: "vapor-sitemap",
+        description: "A dynamic sitemap generator for Vapor.",
+        github: "https://github.com/vapor-community/vapor-sitemap"
     )
 ]
 
@@ -305,5 +311,11 @@ let opensource_contributor: [OpenSourceRepository] = [
         name: "KodeHighlighter",
         description: "Simple, extendable code highlighting for Spannables on Android.",
         github: "https://github.com/markusressel/KodeHighlighter"
+    ),
+    OpenSourceRepository(
+        id: "lingo-vapor",
+        name: "Lingo-Vapor",
+        description: "Vapor provider for Lingo - the Swift localization library",
+        github: "https://github.com/vapor-community/Lingo-Vapor"
     )
 ]

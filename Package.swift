@@ -11,6 +11,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
         .package(url: "https://github.com/brokenhandsio/leaf-error-middleware.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor-community/vapor-sitemap.git", from: "1.0.0"),
     ],
     targets: [
         .target(
@@ -18,7 +19,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Leaf", package: "leaf"),
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "LeafErrorMiddleware", package: "leaf-error-middleware")
+                .product(name: "LeafErrorMiddleware", package: "leaf-error-middleware"),
+                .product(name: "VaporSitemap", package: "vapor-sitemap")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
