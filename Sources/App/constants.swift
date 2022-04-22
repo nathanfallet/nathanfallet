@@ -11,19 +11,6 @@ import Foundation
 
 let projects: [Project] = [
     Project(
-        id: "converty",
-        name: "BaseConverter: Converty",
-        description_little: "The fast and easy way to convert numbers with tons of possibilities!",
-        description: "",
-        last_update: "2022-02-12 10:00:00",
-        data: .app(
-            "https://play.google.com/store/apps/details?id=me.nathanfallet.converty",
-            "https://apps.apple.com/app/base-converter-converty/id1609456234"
-        ),
-        img: "https://www.nathanfallet.me/img/project-converty.jpg",
-        version: "1.0"
-    ),
-    Project(
         id: "brocstock",
         name: "BrocStock",
         description_little: "Gérez vos produits comme un pro !",
@@ -38,12 +25,25 @@ let projects: [Project] = [
         github: "https://github.com/GroupeMINASTE/BrocStock-iOS"
     ),
     Project(
+        id: "converty",
+        name: "BaseConverter: Converty",
+        description_little: "The fast and easy way to convert numbers with tons of possibilities!",
+        description: "",
+        last_update: "2022-02-12 10:00:00",
+        data: .app(
+            "https://play.google.com/store/apps/details?id=me.nathanfallet.converty",
+            "https://apps.apple.com/app/base-converter-converty/id1609456234"
+        ),
+        img: "https://www.nathanfallet.me/img/project-converty.jpg",
+        version: "1.1.2"
+    ),
+    Project(
         id: "craftsearch",
         name: "CraftSearch",
         description_little: "CraftSearch est le premier moteur de recherche Minecraft innovant qui trouve des serveurs in-game depuis 2016. Connectez-vous sur le serveur que VOUS voulez en un clic.",
         description: "",
         last_update: "2018-03-08 14:15:15",
-        data: .link("https://www.craftsearch.fr/"),
+        data: .link("https://www.craftsearch.net/"),
         img: "https://www.craftsearch.net/img/logo.png",
         version: "5.0",
         github: "https://github.com/GroupeMINASTE/CraftSearch"
@@ -112,7 +112,7 @@ let projects: [Project] = [
         last_update: "2022-02-27 10:50:00",
         data: .link("https://latexcards.app/"),
         img: "https://www.nathanfallet.me/img/project-latexcards.jpg",
-        version: "1.3.1"
+        version: "1.3.2"
     ),
     Project(
         id: "ocaml",

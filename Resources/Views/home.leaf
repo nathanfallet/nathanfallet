@@ -37,13 +37,13 @@
                                     #else:
                                     -->
                                     <div class="item row">
-                                        <a class="col-md-4 col-12" href="/project/#(project.id)">
+                                        <a class="col-md-4 col-12" href="#if(project.data.link):#(project.data.link._0)#else:/project/#(project.id)#endif">
                                         <img class="img-fluid project-image" src="#(project.img)" alt="#(project.name)" />
                                         </a>
                                         <div class="desc col-md-8 col-12">
-                                            <h3 class="title"><a href="/project/#(project.id)">#(project.name)</a></h3>
+                                            <h3 class="title"><a href="#if(project.data.link):#(project.data.link._0)#else:/project/#(project.id)#endif">#(project.name)</a></h3>
                                             <p class="mb-2">#(project.description_little)</p>
-                                            <p><a class="more-link" href="/project/#(project.id)"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
+                                            <p><a class="more-link" href="#if(project.data.link):#(project.data.link._0)#else:/project/#(project.id)#endif"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
                                         </div><!--//desc-->
                                     </div>
                                     <!--#endif-->
