@@ -58,7 +58,7 @@
                         <div class="section-inner">
                             <h2 class="heading sr-only">Basic Information</h2>
                             <div class="content">
-                                <ul class="list-unstyled">
+                                <ul class="list-unstyled list-fa-16">
                                     <li>
                                         <i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>France
                                     </li>
@@ -70,6 +70,9 @@
                                     </li>
                                     <li>
                                         <i class="fas fa-donate"></i><span class="sr-only">Donate:</span><a href="https://paypal.me/paynathanfallet">paypal.me</a>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-file-pdf"></i><span class="sr-only">CV:</span><a href="/files/cv.pdf">CV</a>
                                     </li>
                                 </ul>
                             </div>

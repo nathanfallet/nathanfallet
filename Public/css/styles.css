@@ -677,6 +677,10 @@ a.dotted-link:hover {
   margin-left: 31px;
 }
 
+.list-fa-16 svg {
+  width: 1em !important;
+}
+
 @supports(padding: max(0px)) {
     .container {
         padding-left: max(12px, env(safe-area-inset-left));
