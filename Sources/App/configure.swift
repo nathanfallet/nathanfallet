@@ -10,14 +10,14 @@ public func configure(_ app: Application) throws {
     
     // Middlewares
     app.middleware.use(FileMiddleware(
-            publicDirectory: app.directory.publicDirectory
-    ))
-    app.middleware.use(LeafErrorMiddleware(
-        contextGenerator: ErrorController.contextGenerator
+        publicDirectory: app.directory.publicDirectory
     ))
     app.middleware.use(SitemapMiddleware(
         isSitemap: SitemapController.isSitemap,
         generateURLs: SitemapController.generateURLs
+    ))
+    app.middleware.use(LeafErrorMiddleware(
+        contextGenerator: ErrorController.contextGenerator
     ))
     
     // Register Leaf as view renderer
