@@ -274,6 +274,12 @@ let opensource_maintainer: [OpenSourceRepository] = [
         github: "https://github.com/stephencelis/SQLite.swift"
     ),
     OpenSourceRepository(
+        id: "cryptoswift",
+        name: "CryptoSwift",
+        description: "CryptoSwift is a growing collection of standard and secure cryptographic algorithms implemented in Swift",
+        github: "https://github.com/krzyzanowskim/CryptoSwift"
+    ),
+    OpenSourceRepository(
         id: "vapor-sitemap",
         name: "vapor-sitemap",
         description: "A dynamic sitemap generator for Vapor.",
@@ -282,12 +288,6 @@ let opensource_maintainer: [OpenSourceRepository] = [
 ]
 
 let opensource_contributor: [OpenSourceRepository] = [
-    OpenSourceRepository(
-        id: "cryptoswift",
-        name: "CryptoSwift",
-        description: "CryptoSwift is a growing collection of standard and secure cryptographic algorithms implemented in Swift",
-        github: "https://github.com/krzyzanowskim/CryptoSwift"
-    ),
     OpenSourceRepository(
         id: "sourceful",
         name: "Sourceful",
