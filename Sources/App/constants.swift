@@ -280,6 +280,12 @@ let opensource_maintainer: [OpenSourceRepository] = [
         github: "https://github.com/krzyzanowskim/CryptoSwift"
     ),
     OpenSourceRepository(
+        id: "codescanner",
+        name: "CodeScanner",
+        description: "A SwiftUI view that is able to scan barcodes, QR codes, and more, and send back what was found.",
+        github: "https://github.com/twostraws/CodeScanner"
+    ),
+    OpenSourceRepository(
         id: "vapor-sitemap",
         name: "vapor-sitemap",
         description: "A dynamic sitemap generator for Vapor.",
@@ -293,12 +299,6 @@ let opensource_contributor: [OpenSourceRepository] = [
         name: "Sourceful",
         description: "A syntax highlighting source editor for iOS and macOS using UITextView and NSTextView.",
         github: "https://github.com/twostraws/Sourceful"
-    ),
-    OpenSourceRepository(
-        id: "codescanner",
-        name: "CodeScanner",
-        description: "A SwiftUI view that is able to scan barcodes, QR codes, and more, and send back what was found.",
-        github: "https://github.com/twostraws/CodeScanner"
     ),
     OpenSourceRepository(
         id: "kodeeditor",
