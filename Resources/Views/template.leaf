@@ -57,7 +57,7 @@
                 <img class="profile-image img-fluid float-left" src="/img/logo.jpg" alt="Nathan Fallet" width="180px;" />
                 <div class="profile-content float-left">
                     <h1 class="name">Nathan Fallet</h1>
-                    <h2 class="desc">iOS developer</h2>
+                    <h2 class="desc">Mobile app developer</h2>
                     <ul class="social list-inline">
                         <li class="list-inline-item"><a href="https://github.com/NathanFallet" target="_blank"><i class="fab fa-github"></i></a></li>
                         <li class="list-inline-item"><a href="https://stackoverflow.com/story/nathanfallet" target="_blank"><i class="fab fa-stack-overflow"></i></a></li>
