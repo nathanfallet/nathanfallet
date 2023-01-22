@@ -2,7 +2,7 @@
 
 Hello, my name is Nathan and I've been coding since I was just 10 years old. I started with some simple HTML projects and quickly moved on to more complex development with PHP. But it was when I discovered Java that I truly found my passion. I loved creating Minecraft plugins for servers with friends.
 
-Now at 14, I am part of [Groupe MINASTE](https://github.com/GroupeMINASTE), a team of developers that specialize in creating top-quality websites and mobile apps for Android and iOS. With years of experience and a dedication to my craft, I am committed to delivering exceptional results for every project I work on.
+At 14, I joined [Groupe MINASTE](https://github.com/GroupeMINASTE), a team of developers that specialize in creating top-quality websites and mobile apps for Android and iOS. With years of experience and a dedication to my craft, I am now committed to delivering exceptional results for every project I work on.
 
 As a freelancer, I now specialize in developing mobile apps using Swift and Kotlin. These programming languages are my favorites because they allow me to create high-performance, user-friendly apps that are optimized for both iOS and Android platforms. I am passionate about creating apps that are not only functional but also visually appealing and easy to use. My expertise in Swift and Kotlin allows me to deliver high-quality apps that are tailored to meet my clients' specific needs and requirements.
 
