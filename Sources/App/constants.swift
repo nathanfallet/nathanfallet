@@ -238,16 +238,16 @@ let projects: [Project] = [
 
 let opensource_maintainer: [OpenSourceRepository] = [
     OpenSourceRepository(
-        id: "apirequest-ios",
-        name: "APIRequest.swift",
-        description: "A swift package to interact with a REST API",
-        github: "https://github.com/GroupeMINASTE/APIRequest.swift"
+        id: "makth",
+        name: "Makth",
+        description: "A Kotlin library for algebra",
+        github: "https://github.com/NathanFallet/Makth"
     ),
     OpenSourceRepository(
-        id: "apirequest-android",
-        name: "APIRequest.java",
-        description: "An android library to interact with a REST API",
-        github: "https://github.com/GroupeMINASTE/APIRequest.java"
+        id: "apirequest",
+        name: "APIRequest",
+        description: "A swift package/android library to interact with a REST API",
+        github: "https://github.com/NathanFallet/APIRequest"
     ),
     OpenSourceRepository(
         id: "digianalytics",
@@ -259,7 +259,7 @@ let opensource_maintainer: [OpenSourceRepository] = [
         id: "unlockpremium",
         name: "UnlockPremium",
         description: "A package to include a standard \"Unlock premium\" view in iOS and Android apps",
-        github: "https://github.com/GroupeMINASTE/UnlockPremium"
+        github: "https://github.com/NathanFallet/UnlockPremium"
     ),
     OpenSourceRepository(
         id: "donateviewcontroller",
