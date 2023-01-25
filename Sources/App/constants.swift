@@ -56,8 +56,7 @@ let projects: [Project] = [
         last_update: "2019-10-25 11:10:14",
         data: .link("https://www.delta-algorithms.com/"),
         img: "https://www.nathanfallet.me/img/project-delta.jpg",
-        version: "3.6.4",
-        github: "https://github.com/GroupeMINASTE/Delta-iOS"
+        version: "3.6.4"
     ),
     Project(
         id: "extopy",
@@ -66,18 +65,8 @@ let projects: [Project] = [
         description: "",
         last_update: "2018-04-29 17:19:59",
         data: .link("https://www.extopy.com/"),
-        img: "https://www.extopy.com/images/logo.png",
+        img: "https://www.extopy.com/img/logo.png",
         version: "1.0"
-    ),
-    Project(
-        id: "extopyanalytics",
-        name: "Extopy Analytics",
-        description_little: "Get all the statistics you need from all your favorite social networks, including Extopy. All this by respecting your privacy.",
-        description: "",
-        last_update: "2020-01-11 10:09:36",
-        data: .link("https://analytics.extopy.com/"),
-        img: "https://www.nathanfallet.me/img/project-extopyanalytics.jpg",
-        version: "1.0.4"
     ),
     Project(
         id: "fmobile",
@@ -112,7 +101,7 @@ let projects: [Project] = [
         last_update: "2022-02-27 10:50:00",
         data: .link("https://latexcards.app/"),
         img: "https://www.nathanfallet.me/img/project-latexcards.jpg",
-        version: "1.3.2"
+        version: "1.5.5"
     ),
     Project(
         id: "ocaml",
@@ -123,7 +112,7 @@ let projects: [Project] = [
         data: .link("https://ocaml-learn-code.com"),
         img: "https://www.nathanfallet.me/img/project-ocaml.jpg",
         version: "1.2.7",
-        github: "https://github.com/GroupeMINASTE/OCaml"
+        github: "https://github.com/NathanFallet/OCaml"
     ),
     Project(
         id: "pickfalling",
@@ -180,7 +169,7 @@ let projects: [Project] = [
         last_update: "2021-07-17 08:00:00",
         data: .link("https://ringify.app"),
         img: "https://www.nathanfallet.me/img/project-ringify.jpg",
-        version: "1.0"
+        version: "1.3.5"
     ),
     Project(
         id: "swiftmc",
@@ -205,7 +194,7 @@ let projects: [Project] = [
         ),
         img: "https://www.nathanfallet.me/img/project-tictaitoe.jpg",
         version: "1.6",
-        github: "https://github.com/GroupeMINASTE/MorpionTPE-iOS"
+        github: "https://github.com/NathanFallet/MorpionTPE-iOS"
     ),
     Project(
         id: "vitemadose",
