@@ -21,4 +21,4 @@ To see my work in action, please visit [my website](https://www.nathanfallet.me)
 
 ![Streak](https://github-readme-streak-stats.herokuapp.com/?user=NathanFallet&theme=tokyonight&hide_border=true)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NathanFallet&include_all_commits=true&count_private=true&theme=tokyonight&langs_count=6&hide_border=true&layout=compact&hide=css)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NathanFallet&include_all_commits=true&count_private=true&theme=tokyonight&langs_count=6&hide_border=true&layout=compact)
