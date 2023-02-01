@@ -63,7 +63,7 @@
                                         <i class="fas fa-map-marker-alt"></i><span class="sr-only">Location:</span>France
                                     </li>
                                     <li>
-                                        <i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a href="mailto:contact@nathanfallet.me">contact@nathanfallet.me</a><br/><a href="mailto:guim@uve.ninja" class="margin-left-31">guim@uve.ninja</a>
+                                        <i class="fas fa-envelope"></i><span class="sr-only">Email:</span><a href="mailto:contact@nathanfallet.me">contact@nathanfallet.me</a>
                                     </li>
                                     <li>
                                         <i class="fas fa-link"></i><span class="sr-only">Website:</span><a href="/">nathanfallet.me</a>
