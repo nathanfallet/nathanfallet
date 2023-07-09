@@ -11,20 +11,6 @@ import Foundation
 
 let projects: [Project] = [
     Project(
-        id: "brocstock",
-        name: "BrocStock",
-        description_little: "Gérez vos produits comme un pro !",
-        description: "<h3>Une application simple</h3>\n<p>Nous avons simplifié au maximum l'interface pour faciliter son utilisation et son efficacité.</p>\n<h3>Gérez votre stock</h3>\n<p>Ajoutez vos produits, changez la quantité, calculez vos gains, ... Tout ce qu'il faut pour gérer une vente comme une brocante !</p>",
-        last_update: "2018-06-14 07:35:32",
-        data: .app(
-            nil,
-            "https://apps.apple.com/app/brocstock/id1397163629"
-        ),
-        img: "https://www.nathanfallet.me/img/project-brocstock.jpg",
-        version: "1.1",
-        github: "https://github.com/GroupeMINASTE/BrocStock-iOS"
-    ),
-    Project(
         id: "converty",
         name: "BaseConverter: Converty",
         description_little: "The fast and easy way to convert numbers with tons of possibilities!",
@@ -64,8 +50,8 @@ let projects: [Project] = [
         description_little: "Extopy is a completely new kind of NON-PROFIT social network that cares about your privacy/safety.",
         description: "",
         last_update: "2018-04-29 17:19:59",
-        data: .link("https://www.extopy.com/"),
-        img: "https://www.extopy.com/img/logo.png",
+        data: .link("https://extopy.com/"),
+        img: "https://extopy.com/img/logo.png",
         version: "1.0"
     ),
     Project(
@@ -78,20 +64,6 @@ let projects: [Project] = [
         img: "https://www.nathanfallet.me/img/project-fmobile.jpg",
         version: "5.0",
         github: "https://github.com/GroupeMINASTE/FMobileS1"
-    ),
-    Project(
-        id: "hiberlink",
-        name: "HiberLink",
-        description_little: "The client app for HiberLink, an URL shortner by HiberFile.",
-        description: "The client app for HiberLink, an URL shortner by HiberFile.",
-        last_update: "2020-07-06 22:57:34",
-        data: .app(
-            "https://play.google.com/store/apps/details?id=me.nathanfallet.hiberlink",
-            "https://apps.apple.com/app/hiberlink/id1508811165"
-        ),
-        img: "https://www.nathanfallet.me/img/project-hiberlink.jpg",
-        version: "1.2",
-        github: "https://github.com/GroupeMINASTE/HiberLink-iOS"
     ),
     Project(
         id: "latexcards",
@@ -170,17 +142,6 @@ let projects: [Project] = [
         data: .link("https://ringify.app"),
         img: "https://www.nathanfallet.me/img/project-ringify.jpg",
         version: "1.3.5"
-    ),
-    Project(
-        id: "swiftmc",
-        name: "SwiftMC",
-        description_little: "Rewriting a Minecraft Server in Swift",
-        description: "",
-        last_update: "2020-11-20 12:00:00",
-        data: .link("https://github.com/GroupeMINASTE/SwiftMC"),
-        img: "https://www.nathanfallet.me/img/project-swiftmc.jpg",
-        version: "1.0",
-        github: "https://github.com/GroupeMINASTE/SwiftMC"
     ),
     Project(
         id: "tictaitoe",

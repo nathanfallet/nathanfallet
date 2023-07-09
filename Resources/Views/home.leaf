@@ -54,6 +54,14 @@
 
                 </div>
                 <div class="secondary col-lg-4 col-12">
+                    <section class="info aside section">
+                        <div class="section-inner">
+                            <h2 class="heading">Partner</h2>
+                            <div class="content">
+                                <p>Get 15% OFF on <a href="https://shiftek.fr/hosting/-nathanfallet">Shiftek Hosting</a> with code NATHAN15</p>
+                            </div>
+                        </div>
+                    </section>
                     <aside class="info aside section">
                         <div class="section-inner">
                             <h2 class="heading sr-only">Basic Information</h2>

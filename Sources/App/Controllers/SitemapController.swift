@@ -5,15 +5,16 @@
 //  Created by Nathan Fallet on 22/04/2022.
 //
 
+import Vapor
 import VaporSitemap
 
 class SitemapController {
     
-    static func isSitemap(_ path: String) -> Bool {
-        return path == "/sitemap.xml"
+    static func isSitemap(_ req: Request) -> Bool {
+        return req.url.path == "/sitemap.xml"
     }
     
-    static func generateURLs(_ path: String) -> [SitemapURL] {
+    static func generateURLs(_ req: Request) -> [SitemapURL] {
         let prefix = "https://www.nathanfallet.me/"
         var paths = [""]
         
