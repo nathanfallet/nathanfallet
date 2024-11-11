@@ -19,4 +19,4 @@ jobs:
       - name: Build Docker image
         run: docker build . -t nathanfallet/nathanfallet
       - name: Publish to Docker Hub
-        run: push nathanfallet/nathanfallet:latest
+        run: docker push nathanfallet/nathanfallet:latest
