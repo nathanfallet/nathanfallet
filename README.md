@@ -15,10 +15,10 @@ Proficient in Kotlin, Swift and Java (among others). I leverage these technologi
 ## 🚀 Open Source Projects
 
 I’m an open-source contributor and maintainer. Notable projects include:
-	•	kdriver – A blazing-fast, coroutine-first Kotlin library for web scraping and browser automation. We ported a Python scraper to Kotlin and open-sourced it.
-	•	kourier – A pure Kotlin AMQP/RabbitMQ client optimized for coroutines and Kotlin Multiplatform.
-	•	CryptoSwift – A widely-used Swift library of cryptographic algorithms (10k+ stars).
-	•	SQLite.swift – A type-safe Swift layer over SQLite (10k+ stars).
+* kdriver – A blazing-fast, coroutine-first Kotlin library for web scraping and browser automation. We ported a Python scraper to Kotlin and open-sourced it.
+* kourier – A pure Kotlin AMQP/RabbitMQ client optimized for coroutines and Kotlin Multiplatform.
+* CryptoSwift – A widely-used Swift library of cryptographic algorithms (10k+ stars).
+* SQLite.swift – A type-safe Swift layer over SQLite (10k+ stars).
 
 I’ve also worked on tools like kaccelero, zodable, and many others for Kotlin/Swift development.
 
