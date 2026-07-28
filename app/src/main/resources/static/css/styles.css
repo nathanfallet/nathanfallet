@@ -456,6 +456,25 @@ code {
     margin-left: 0.35rem;
 }
 
+.subhead {
+    margin: 2.5rem 0 1.25rem;
+    font-size: 0.78rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-faint);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.subhead::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
 /* Contributions */
 
 .contributions {

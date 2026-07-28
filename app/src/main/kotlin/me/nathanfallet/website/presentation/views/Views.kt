@@ -152,6 +152,11 @@ data class HomeView(
     val socials: List<LinkView>,
     val products: List<ProductView>,
     val libraries: List<LibraryView>,
+    /**
+     * The ones I do not maintain anymore, shown apart so the star ordering does
+     * not look like it restarts for no reason.
+     */
+    val archivedLibraries: List<LibraryView>,
     val contributions: List<ContributionView>,
     val archives: List<ArchiveView>,
     val videos: List<VideoView>,

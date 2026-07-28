@@ -34,9 +34,11 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
 
     get("/") {
         val stats = gitHubStatsService.stats(portfolio.repositories())
-        val libraries = portfolio.libraries
+        val allLibraries = portfolio.libraries
             .map { it.toLibraryView(portfolio, stats) }
-            .sortedWith(compareBy({ it.sunset }, { -it.stars }))
+            .sortedByDescending { it.stars }
+        val libraries = allLibraries.filterNot { it.sunset }
+        val archivedLibraries = allLibraries.filter { it.sunset }
         val contributions = portfolio.contributions
             .map { it.toContributionView(portfolio, stats) }
             .sortedByDescending { it.stars }
@@ -65,13 +67,14 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         socials = Profile.socials.map { LinkView("WEBSITE", it.first, it.second) },
                         products = portfolio.products.map { it.toProductView(portfolio) },
                         libraries = libraries,
+                        archivedLibraries = archivedLibraries,
                         contributions = contributions,
                         archives = portfolio.archives.map { it.toArchiveView() },
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
                         articles = portfolio.articles.map { it.toArticleView() },
-                        openSourceProjects = libraries.size + contributions.size,
-                        totalStars = libraries.sumOf { it.stars } + maintained.sumOf { it.stars },
+                        openSourceProjects = allLibraries.size + contributions.size,
+                        totalStars = allLibraries.sumOf { it.stars } + maintained.sumOf { it.stars },
                         videoCount = portfolio.videos.size,
                     )
                 )

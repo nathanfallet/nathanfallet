@@ -94,6 +94,29 @@
             </a>
             </#list>
         </div>
+
+        <#if view.archivedLibraries?size gt 0>
+        <h3 class="subhead">No longer maintained</h3>
+        <div class="libraries">
+            <#list view.archivedLibraries as library>
+            <a class="library" href="${library.url}">
+                <div class="library-head">
+                    <h3>${library.name}</h3>
+                    <#if (library.stars > 0)>
+                    <span class="stars" title="${library.stars} stars on GitHub">★ ${library.stars}</span>
+                    </#if>
+                </div>
+                <p class="tagline">${library.tagline}</p>
+                <div class="library-foot">
+                    <#list library.powers as project>
+                    <span class="tag tag-powers">Powers ${project.name}</span>
+                    </#list>
+                    <#if library.language??><span class="tag">${library.language}</span></#if>
+                </div>
+            </a>
+            </#list>
+        </div>
+        </#if>
     </div>
 </section>
 
