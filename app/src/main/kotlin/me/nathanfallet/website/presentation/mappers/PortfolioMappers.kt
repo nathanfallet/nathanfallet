@@ -13,7 +13,7 @@ import me.nathanfallet.website.domain.models.Powered
 import me.nathanfallet.website.domain.models.Product
 import me.nathanfallet.website.domain.models.Status
 import me.nathanfallet.website.domain.models.Video
-import me.nathanfallet.website.domain.services.PullRequest
+import me.nathanfallet.website.domain.services.Landed
 import me.nathanfallet.website.domain.services.RepositoryStats
 import me.nathanfallet.website.presentation.views.ArchiveView
 import me.nathanfallet.website.presentation.views.ArticleView
@@ -26,7 +26,7 @@ import me.nathanfallet.website.presentation.views.LibraryView
 import me.nathanfallet.website.presentation.views.LinkView
 import me.nathanfallet.website.presentation.views.MetaView
 import me.nathanfallet.website.presentation.views.ProductView
-import me.nathanfallet.website.presentation.views.PullRequestView
+import me.nathanfallet.website.presentation.views.LandedView
 import me.nathanfallet.website.presentation.views.RelatedGroupView
 import me.nathanfallet.website.presentation.views.VideoPageView
 import me.nathanfallet.website.presentation.views.VideoView
@@ -167,7 +167,7 @@ fun Coordinate.toInstallView(repo: String, version: String?): InstallView {
 fun Entry.toEntryPageView(
     portfolio: Portfolio,
     stats: Map<String, RepositoryStats>,
-    pullRequests: List<PullRequest> = emptyList(),
+    landed: List<Landed> = emptyList(),
     install: List<InstallView> = emptyList(),
 ): EntryPageView {
     val videos = portfolio.videosAbout(this).map { it.toVideoView(portfolio) }
@@ -236,9 +236,7 @@ fun Entry.toEntryPageView(
         links = links.map(Link::toLinkView),
         meta = meta,
         related = related,
-        pullRequests = pullRequests.map {
-            PullRequestView(it.number, it.title, it.url, it.mergedAt)
-        },
+        landed = landed.map { LandedView(it.reference, it.title, it.url, it.date) },
         videos = videos,
         install = install,
     )

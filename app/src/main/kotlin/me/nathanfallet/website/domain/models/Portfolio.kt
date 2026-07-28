@@ -140,8 +140,13 @@ data class Contribution(
      * Whether I am one of the maintainers, and not only an occasional contributor.
      */
     val maintainer: Boolean = false,
+    /**
+     * What I did there, for the cases the API cannot tell on its own: a commit
+     * cherry-picked into somebody else's pull request leaves no merged PR of
+     * mine to list.
+     */
+    override val description: String? = null,
 ) : Entry {
-    override val description: String? = null
     override val status = Status.LIVE
     override val aliases = emptyList<String>()
     override val links = listOf(Link(LinkKind.GITHUB, "GitHub", "https://github.com/$repo"))

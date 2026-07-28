@@ -1,16 +1,21 @@
 package me.nathanfallet.website.domain.services
 
 /**
- * A pull request I authored and that got merged upstream.
+ * Something of mine that landed in somebody else's repository: either a pull
+ * request I authored, or a commit of mine that reached the default branch some
+ * other way.
  */
-data class PullRequest(
-    val number: Int,
+data class Landed(
+    /**
+     * `#1077` for a pull request, a short sha for a commit.
+     */
+    val reference: String,
     val title: String,
     val url: String,
     /**
-     * ISO date of the merge, or null when GitHub does not report it.
+     * ISO date, or null when GitHub does not report one.
      */
-    val mergedAt: String?,
+    val date: String?,
 )
 
 /**
@@ -19,9 +24,14 @@ data class PullRequest(
 interface GitHubContributionsService {
 
     /**
-     * Returns my merged pull requests on [repo], most recent first. An empty
-     * list means either none, or that GitHub could not be reached: the page has
-     * to render fine in both cases.
+     * Returns what landed in [repo], most recent first.
+     *
+     * Merged pull requests come first. When there are none — a maintainer may
+     * have cherry-picked the change into their own release branch, which leaves
+     * no merged pull request of mine — the commits I authored are used instead.
+     *
+     * An empty list means either nothing, or that GitHub could not be reached:
+     * the page has to render fine in both cases.
      */
-    suspend fun pullRequests(repo: String): List<PullRequest>
+    suspend fun landed(repo: String): List<Landed>
 }

@@ -251,8 +251,9 @@ class PortfolioBuilder {
         stars: Int = 0,
         maintainer: Boolean = false,
         id: String = repo.substringAfter('/').lowercase().replace('.', '-'),
+        note: String? = null,
     ) {
-        contributions += Contribution(id, repo, name, tagline, stars, maintainer)
+        contributions += Contribution(id, repo, name, tagline, stars, maintainer, note)
     }
 
     fun archive(id: String, block: ArchiveBuilder.() -> Unit) {

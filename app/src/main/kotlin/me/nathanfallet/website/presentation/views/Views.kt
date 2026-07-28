@@ -120,11 +120,11 @@ data class MetaView(
     val value: String,
 )
 
-data class PullRequestView(
-    val number: Int,
+data class LandedView(
+    val reference: String,
     val title: String,
     val url: String,
-    val mergedAt: String?,
+    val date: String?,
 )
 
 data class RelatedGroupView(
@@ -188,7 +188,7 @@ data class EntryPageView(
     val links: List<LinkView>,
     val meta: List<MetaView>,
     val related: List<RelatedGroupView>,
-    val pullRequests: List<PullRequestView>,
+    val landed: List<LandedView>,
     val videos: List<VideoView>,
     val install: List<InstallView>,
 )

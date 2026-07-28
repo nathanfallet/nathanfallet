@@ -13,7 +13,7 @@ import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.services.GitHubContributionsService
 import me.nathanfallet.website.domain.services.GitHubStatsService
 import me.nathanfallet.website.domain.services.PackageVersionService
-import me.nathanfallet.website.domain.services.PullRequest
+import me.nathanfallet.website.domain.services.Landed
 import me.nathanfallet.website.domain.services.ThumbnailService
 import me.nathanfallet.website.domain.services.RepositoryStats
 import me.nathanfallet.website.presentation.config.configureErrorHandling
@@ -42,8 +42,8 @@ private class FakeGitHubStatsService : GitHubStatsService {
  * something to render without touching the network.
  */
 private class FakeGitHubContributionsService : GitHubContributionsService {
-    override suspend fun pullRequests(repo: String) =
-        listOf(PullRequest(42, "Fix something in $repo", "https://github.com/$repo/pull/42", "2026-01-15"))
+    override suspend fun landed(repo: String) =
+        listOf(Landed("#42", "Fix something in $repo", "https://github.com/$repo/pull/42", "2026-01-15"))
 }
 
 /**
@@ -153,12 +153,12 @@ class ApplicationTest {
     }
 
     @Test
-    fun aContributionPageListsTheMergedPullRequests() = testApplication {
+    fun aContributionPageListsWhatLandedThere() = testApplication {
         application { testModule() }
         val contribution = portfolio.contributions.first { it.repo == "ktorio/ktor" }
         val body = client.get("/projects/${contribution.id}").bodyAsText()
         assertTrue(body.contains("Fix something in ktorio/ktor"), "the pull requests are missing")
-        assertTrue(body.contains("merged 2026-01-15"), "the merge date is missing")
+        assertTrue(body.contains("2026-01-15"), "the date is missing")
     }
 
     @Test

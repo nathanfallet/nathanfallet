@@ -159,10 +159,10 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
         }
 
         val stats = gitHubStatsService.stats(portfolio.repositories())
-        // Only a contribution page needs the pull requests, and the search API is
-        // rate limited far more aggressively than the rest.
-        val pullRequests = (entry as? Contribution)
-            ?.let { gitHubContributionsService.pullRequests(it.repo) }
+        // Only a contribution page needs this, and the search API is rate limited
+        // far more aggressively than the rest.
+        val landed = (entry as? Contribution)
+            ?.let { gitHubContributionsService.landed(it.repo) }
             .orEmpty()
 
         // Only a library declares where it can be installed from.
@@ -186,7 +186,7 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
         call.respond(
             FreeMarkerContent(
                 "entry.ftl",
-                mapOf("view" to entry.toEntryPageView(portfolio, stats, pullRequests, install))
+                mapOf("view" to entry.toEntryPageView(portfolio, stats, landed, install))
             )
         )
     }

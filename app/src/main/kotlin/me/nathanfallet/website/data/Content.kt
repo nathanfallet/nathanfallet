@@ -48,7 +48,7 @@ val portfolio = portfolio {
         appStore("6447619941")
         poweredBy(
             "kdriver", "kourier", "zodable", "pkg", "flareon", "webhooks",
-            "stripe-to-amplitude", "ktor", "koog",
+            "stripe-to-amplitude", "ktor", "koog", "cube",
         )
         description = """
             <p>ControlResell connects to the marketplaces resellers sell on — Vinted, eBay, Shopify,
@@ -348,10 +348,20 @@ val portfolio = portfolio {
         "A blazing fast, async-first, undetectable web scraping framework for Python.",
         1375, maintainer = true,
     )
+    contribution(
+        "cube-js/cube", "Cube",
+        "The open source semantic layer for analytics.", 20501,
+        note = """
+            <p>I migrated the MySQL driver from <code>mysql</code> to <code>mysql2</code>,
+            which fixed the <code>caching_sha2_password</code> failures on recent MySQL
+            servers. The commit was cherry-picked into another pull request, so it does not
+            show up in the list below — it landed as
+            <em>"feat(mysql-driver): Migrate driver to mysql2 library, thanks @nathanfallet"</em>.</p>
+        """.trimIndent(),
+    )
     contribution("ktorio/ktor", "Ktor", "The Kotlin framework for connected applications.", 14495)
     contribution("ktorio/ktor-documentation", "Ktor documentation", "Documentation for the Ktor framework.", 538)
     contribution("JetBrains/koog", "Koog", "JetBrains' JVM framework for building AI agents.", 4477)
-    contribution("Heapy/awesome-kotlin", "awesome-kotlin", "A curated list of awesome Kotlin related stuff.", 11367)
     contribution("oshai/kotlin-logging", "kotlin-logging", "Lightweight multiplatform logging framework for Kotlin.", 3095)
     contribution("rabbitmq/rabbitmq-tutorials", "RabbitMQ tutorials", "Tutorials for using RabbitMQ in various ways.", 6889)
     contribution("rabbitmq/rabbitmq-website", "RabbitMQ website", "The RabbitMQ website.", 1214)
@@ -372,7 +382,6 @@ val portfolio = portfolio {
     contribution("flutter/website", "Flutter website", "The Flutter documentation website.", 3105)
     contribution("translate/translate", "Translate Toolkit", "The localization tools behind Weblate.", 963)
     contribution("ocaml/v2.ocaml.org", "ocaml.org", "The official OCaml website.", 320)
-    contribution("ocaml-community/awesome-ocaml", "awesome-ocaml", "A curated collection of OCaml tools and libraries.", 3102)
     contribution("pret/pokeheartgold", "pokeheartgold", "Decompilation of Pokémon HeartGold and SoulSilver.", 559)
     contribution("CovidTrackerFr/vitemadose-ios", "Vite Ma Dose", "The COVID-19 vaccination slot finder used by millions in France.", 33)
 

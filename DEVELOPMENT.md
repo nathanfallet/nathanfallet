@@ -90,9 +90,13 @@ mine. `about(...)` links a video to the projects it talks about, and the project
 videos back. Thumbnails are proxied through `/videos/{id}/thumbnail.jpg` and cached in memory, so
 the browser never talks to Google.
 
-Contributions get their own page, listing my merged pull requests on the repository. They are read
-from the GitHub search API when the page is viewed — one request, cached for 24 hours — because that
-endpoint is rate limited far more aggressively than the rest of the API.
+Contributions get their own page, listing what of mine landed in the repository. Merged pull requests
+come first, read from the GitHub search API when the page is viewed — one request, cached for 24
+hours, because that endpoint is rate limited far more aggressively than the rest. When there is no
+merged pull request of mine, the commits I authored are listed instead: a maintainer cherry-picking
+a change into their own release branch leaves no pull request behind, and the commit tells the story
+better than the release pull request that happened to carry it. `note = "..."` adds a paragraph when
+neither is self-explanatory.
 
 The `stars` values are a fallback, not the source of truth: a successful API call always wins. They
 exist so a rate limited or unreachable GitHub degrades into slightly stale numbers instead of no

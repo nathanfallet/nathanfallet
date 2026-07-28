@@ -33,16 +33,16 @@
                 </div>
                 </#if>
 
-                <#if view.pullRequests?size gt 0>
+                <#if view.landed?size gt 0>
                 <h2>What I shipped there</h2>
-                <p>My merged pull requests on this repository, straight from the GitHub API.</p>
+                <p>What landed in this repository, straight from the GitHub API.</p>
                 <ol class="pull-requests">
-                    <#list view.pullRequests as pr>
+                    <#list view.landed as item>
                     <li>
-                        <a href="${pr.url}" rel="noopener">
-                            <span class="pr-title">${pr.title}</span>
+                        <a href="${item.url}" rel="noopener">
+                            <span class="pr-title">${item.title}</span>
                             <span class="pr-meta">
-                                #${pr.number?c}<#if pr.mergedAt??> · merged ${pr.mergedAt}</#if>
+                                ${item.reference}<#if item.date??> · ${item.date}</#if>
                             </span>
                         </a>
                     </li>
