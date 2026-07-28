@@ -10,6 +10,7 @@ import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.models.Powered
 import me.nathanfallet.website.domain.models.Product
 import me.nathanfallet.website.domain.models.Status
+import me.nathanfallet.website.domain.models.Video
 import me.nathanfallet.website.domain.services.PullRequest
 import me.nathanfallet.website.domain.services.RepositoryStats
 import me.nathanfallet.website.presentation.views.ArchiveView
@@ -23,6 +24,8 @@ import me.nathanfallet.website.presentation.views.MetaView
 import me.nathanfallet.website.presentation.views.ProductView
 import me.nathanfallet.website.presentation.views.PullRequestView
 import me.nathanfallet.website.presentation.views.RelatedGroupView
+import me.nathanfallet.website.presentation.views.VideoPageView
+import me.nathanfallet.website.presentation.views.VideoView
 
 /**
  * The canonical path of an entry. `/project/{id}` still resolves, and redirects here.
@@ -64,6 +67,32 @@ fun Contribution.toContributionView(stats: Map<String, RepositoryStats>) = Contr
     maintainer = maintainer,
 )
 
+fun Video.toVideoView(portfolio: Portfolio) = VideoView(
+    title = title,
+    channel = channel,
+    url = path,
+    thumbnail = "$path/thumbnail.jpg",
+    watchUrl = watchUrl,
+    publishedAt = publishedAt,
+    about = about.mapNotNull(portfolio::entry).map { it.toRefView() },
+)
+
+fun Video.toVideoPageView(portfolio: Portfolio) = VideoPageView(
+    layout = LayoutView(
+        title = title,
+        description = "A video from my YouTube channel, published on $publishedAt.",
+        canonical = Profile.BASE_URL + path,
+        snippets = listOf(breadcrumbSnippet(title, Profile.BASE_URL + path)),
+    ),
+    title = title,
+    channel = channel,
+    description = description,
+    thumbnail = "$path/thumbnail.jpg",
+    watchUrl = watchUrl,
+    publishedAt = publishedAt,
+    about = about.mapNotNull(portfolio::entry).map { it.toRefView() },
+)
+
 fun Archive.toArchiveView() = ArchiveView(
     name = name,
     tagline = tagline,
@@ -80,6 +109,7 @@ fun Entry.toEntryPageView(
     stats: Map<String, RepositoryStats>,
     pullRequests: List<PullRequest> = emptyList(),
 ): EntryPageView {
+    val videos = portfolio.videosAbout(this).map { it.toVideoView(portfolio) }
     val meta = mutableListOf<MetaView>()
     val related = mutableListOf<RelatedGroupView>()
     val kind: String
@@ -142,6 +172,7 @@ fun Entry.toEntryPageView(
         pullRequests = pullRequests.map {
             PullRequestView(it.number, it.title, it.url, it.mergedAt)
         },
+        videos = videos,
     )
 }
 

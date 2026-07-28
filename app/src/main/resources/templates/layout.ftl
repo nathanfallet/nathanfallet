@@ -39,6 +39,7 @@
             <a href="/#products">Products</a>
             <a href="/#open-source">Open source</a>
             <a href="/#contributions">Contributions</a>
+            <a href="/videos">Videos</a>
             <a href="/archives">Archives</a>
         </nav>
         <a class="btn btn-primary" href="mailto:contact@nathanfallet.me">Get in touch</a>
@@ -54,9 +55,14 @@
         <div>
             <a href="mailto:contact@nathanfallet.me">contact@nathanfallet.me</a> · France ·
             <a href="/files/cv.pdf">CV</a>
+            <span class="built-with">
+                Built with <a href="https://kotlinlang.org">Kotlin</a> &amp;
+                <a href="https://ktor.io">Ktor</a> ·
+                <a href="https://github.com/nathanfallet/nathanfallet">source</a>
+            </span>
         </div>
         <div class="socials">
-            <a href="https://github.com/NathanFallet">GitHub</a>
+            <a href="https://github.com/nathanfallet">GitHub</a>
             <a href="https://www.linkedin.com/in/nathanfallet/">LinkedIn</a>
             <a href="https://www.youtube.com/@nathanfallet">YouTube</a>
             <a href="https://www.twitch.tv/nathanfallet">Twitch</a>

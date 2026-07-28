@@ -10,6 +10,7 @@ import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.models.Powered
 import me.nathanfallet.website.domain.models.Product
 import me.nathanfallet.website.domain.models.Status
+import me.nathanfallet.website.domain.models.Video
 
 @DslMarker
 annotation class PortfolioDsl
@@ -138,12 +139,54 @@ class ArchiveBuilder(id: String) : PoweredEntryBuilder(id) {
 }
 
 @PortfolioDsl
+class VideoBuilder(private val id: String) {
+
+    /**
+     * The YouTube identifier, the `v=` part of the watch URL.
+     */
+    var youtubeId: String = ""
+
+    var title: String = ""
+
+    /**
+     * What the video is about, in my own words. Rendered as HTML.
+     */
+    var description: String? = null
+
+    /**
+     * ISO date of publication.
+     */
+    var publishedAt: String = ""
+
+    /**
+     * Set it when the video lives on somebody else's channel.
+     */
+    var channel: String? = null
+
+    private val about = mutableListOf<String>()
+
+    /**
+     * Declares which projects this video talks about. Identifiers are checked
+     * against the declared entries when the portfolio is built.
+     */
+    fun about(vararg entryIds: String) {
+        about += entryIds
+    }
+
+    internal fun build(): Video {
+        require(youtubeId.isNotBlank()) { "Video '$id' is missing its youtubeId" }
+        return Video(id, youtubeId, title, description, publishedAt, about, channel)
+    }
+}
+
+@PortfolioDsl
 class PortfolioBuilder {
 
     private val products = mutableListOf<Product>()
     private val libraries = mutableListOf<Library>()
     private val contributions = mutableListOf<Contribution>()
     private val archives = mutableListOf<Archive>()
+    private val videos = mutableListOf<Video>()
 
     fun product(id: String, block: ProductBuilder.() -> Unit) {
         products += ProductBuilder(id).apply(block).build()
@@ -168,6 +211,10 @@ class PortfolioBuilder {
         archives += ArchiveBuilder(id).apply(block).build()
     }
 
+    fun video(id: String, block: VideoBuilder.() -> Unit) {
+        videos += VideoBuilder(id).apply(block).build()
+    }
+
     internal fun build(): Portfolio {
         val known = libraries.map(Library::id).toSet()
         val powered: List<Powered> = products + archives
@@ -189,7 +236,15 @@ class PortfolioBuilder {
         val clashing = (products + resolved + archives).flatMap(Entry::aliases).filter { it in ids }
         require(clashing.isEmpty()) { "Aliases clashing with real identifiers: ${clashing.joinToString()}" }
 
-        return Portfolio(products, resolved, contributions, archives)
+        videos.forEach { video ->
+            video.about.forEach { id ->
+                require(id in ids) { "Video '${video.id}' is about unknown entry '$id'" }
+            }
+        }
+        val videoIds = videos.map(Video::id)
+        require(videoIds.size == videoIds.toSet().size) { "Duplicate video identifiers" }
+
+        return Portfolio(products, resolved, contributions, archives, videos)
     }
 }
 

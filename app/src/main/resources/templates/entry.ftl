@@ -1,4 +1,5 @@
 <#import "layout.ftl" as l>
+<#import "videogrid.ftl" as g>
 <@l.page view.layout>
 
 <article class="entry">
@@ -30,6 +31,11 @@
                     </li>
                     </#list>
                 </ol>
+                </#if>
+
+                <#if view.videos?size gt 0>
+                <h2>I talked about it</h2>
+                <@g.grid view.videos/>
                 </#if>
             </div>
 

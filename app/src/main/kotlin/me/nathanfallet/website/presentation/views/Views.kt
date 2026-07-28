@@ -57,6 +57,33 @@ data class ArchiveView(
     val year: String?,
 )
 
+data class VideoView(
+    val title: String,
+    val channel: String?,
+    val url: String,
+    val thumbnail: String,
+    val watchUrl: String,
+    val publishedAt: String,
+    val about: List<EntryRefView>,
+)
+
+data class VideoPageView(
+    val layout: LayoutView,
+    val title: String,
+    val channel: String?,
+    val description: String?,
+    val thumbnail: String,
+    val watchUrl: String,
+    val publishedAt: String,
+    val about: List<EntryRefView>,
+)
+
+data class VideosPageView(
+    val layout: LayoutView,
+    val videos: List<VideoView>,
+    val appearances: List<VideoView>,
+)
+
 data class MetaView(
     val label: String,
     val value: String,
@@ -96,6 +123,8 @@ data class HomeView(
     val libraries: List<LibraryView>,
     val contributions: List<ContributionView>,
     val archives: List<ArchiveView>,
+    val videos: List<VideoView>,
+    val appearances: List<VideoView>,
     val totalStars: Int,
 )
 
@@ -110,6 +139,7 @@ data class EntryPageView(
     val meta: List<MetaView>,
     val related: List<RelatedGroupView>,
     val pullRequests: List<PullRequestView>,
+    val videos: List<VideoView>,
 )
 
 data class ArchivesPageView(

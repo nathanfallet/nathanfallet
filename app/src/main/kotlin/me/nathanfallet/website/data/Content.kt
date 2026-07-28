@@ -12,7 +12,7 @@ object Profile {
     const val EMAIL = "contact@nathanfallet.me"
     const val LOCATION = "France"
     const val BASE_URL = "https://www.nathanfallet.me"
-    const val GITHUB_LOGIN = "NathanFallet"
+    const val GITHUB_LOGIN = "nathanfallet"
 
     val intro = """
         I have been writing code since I was 10. Today I run
@@ -21,7 +21,7 @@ object Profile {
     """.trimIndent()
 
     val socials = listOf(
-        "GitHub" to "https://github.com/NathanFallet",
+        "GitHub" to "https://github.com/nathanfallet",
         "LinkedIn" to "https://www.linkedin.com/in/nathanfallet/",
         "YouTube" to "https://www.youtube.com/@nathanfallet",
         "Twitch" to "https://www.twitch.tv/nathanfallet",
@@ -101,7 +101,7 @@ val portfolio = portfolio {
     library("amplitude-kmp") {
         name = "amplitude-kmp"
         tagline = "The official Kotlin Multiplatform SDK for Amplitude Analytics."
-        repo = "NathanFallet/amplitude-kmp"
+        repo = "nathanfallet/amplitude-kmp"
         stars = 19
         targets("Android", "iOS", "JVM", "Multiplatform")
     }
@@ -109,7 +109,7 @@ val portfolio = portfolio {
     library("experiment-kmp") {
         name = "experiment-kmp"
         tagline = "Kotlin Multiplatform SDK for Amplitude Experiment."
-        repo = "NathanFallet/experiment-kmp"
+        repo = "nathanfallet/experiment-kmp"
         stars = 1
         targets("Android", "iOS", "JVM", "Multiplatform")
     }
@@ -125,7 +125,7 @@ val portfolio = portfolio {
     library("ocaml") {
         name = "OCaml: Learn & Code"
         tagline = "An OCaml editor, top level and learning place for iOS, iPadOS and macOS."
-        repo = "NathanFallet/ocaml"
+        repo = "nathanfallet/ocaml"
         stars = 86
         targets("iOS", "iPadOS", "macOS")
         appStore("1547506826")
@@ -139,7 +139,7 @@ val portfolio = portfolio {
     library("shortt") {
         name = "shortt"
         tagline = "A URL shortener built with clean architecture in mind."
-        repo = "NathanFallet/shortt"
+        repo = "nathanfallet/shortt"
         stars = 9
         targets("Ktor", "Kotlin Multiplatform")
         description = """
@@ -152,7 +152,7 @@ val portfolio = portfolio {
     library("streamdeck-kotlin-sdk") {
         name = "streamdeck-kotlin-sdk"
         tagline = "A Kotlin SDK to create Stream Deck plugins."
-        repo = "NathanFallet/streamdeck-kotlin-sdk"
+        repo = "nathanfallet/streamdeck-kotlin-sdk"
         stars = 8
         targets("JVM")
     }
@@ -160,7 +160,7 @@ val portfolio = portfolio {
     library("cloudflare-api-client") {
         name = "cloudflare-api-client"
         tagline = "Kotlin client for the Cloudflare API."
-        repo = "NathanFallet/cloudflare-api-client"
+        repo = "nathanfallet/cloudflare-api-client"
         stars = 6
         targets("Multiplatform")
     }
@@ -168,7 +168,7 @@ val portfolio = portfolio {
     library("customerio-api-client") {
         name = "customerio-api-client"
         tagline = "Kotlin client for the Customer.io server API."
-        repo = "NathanFallet/customerio-api-client"
+        repo = "nathanfallet/customerio-api-client"
         stars = 1
         targets("Multiplatform")
     }
@@ -176,7 +176,7 @@ val portfolio = portfolio {
     library("flareon") {
         name = "flareon"
         tagline = "A Firebase Admin SDK for Kotlin Multiplatform."
-        repo = "NathanFallet/flareon"
+        repo = "nathanfallet/flareon"
         stars = 1
         targets("Multiplatform")
     }
@@ -184,7 +184,7 @@ val portfolio = portfolio {
     library("pkg") {
         name = "pkg"
         tagline = "An open source Maven, npm and PyPI package manager."
-        repo = "NathanFallet/pkg"
+        repo = "nathanfallet/pkg"
         stars = 2
         targets("JVM")
     }
@@ -200,7 +200,7 @@ val portfolio = portfolio {
     library("generate-sitemap") {
         name = "generate-sitemap"
         tagline = "A GitHub Action to generate a sitemap for GitHub Pages websites."
-        repo = "NathanFallet/generate-sitemap"
+        repo = "nathanfallet/generate-sitemap"
         stars = 2
         targets("GitHub Actions")
     }
@@ -222,7 +222,7 @@ val portfolio = portfolio {
     library("apirequest") {
         name = "APIRequest"
         tagline = "A Swift package and Android library to talk to a REST API."
-        repo = "NathanFallet/apirequest"
+        repo = "nathanfallet/apirequest"
         stars = 15
         targets("iOS", "macOS", "Android")
         status = Status.SUNSET
@@ -231,7 +231,7 @@ val portfolio = portfolio {
     library("unlockpremium") {
         name = "UnlockPremium"
         tagline = "A ready-made \"unlock premium\" screen for iOS and Android apps."
-        repo = "NathanFallet/unlockpremium"
+        repo = "nathanfallet/unlockpremium"
         stars = 8
         targets("iOS", "Android")
         status = Status.SUNSET
@@ -240,7 +240,7 @@ val portfolio = portfolio {
     library("guimauveui") {
         name = "GuimauveUI"
         tagline = "Reusable UI components for Compose and SwiftUI."
-        repo = "NathanFallet/guimauveui"
+        repo = "nathanfallet/guimauveui"
         stars = 2
         targets("Compose", "SwiftUI")
         status = Status.SUNSET
@@ -258,7 +258,7 @@ val portfolio = portfolio {
     library("makth") {
         name = "makth"
         tagline = "A Kotlin library for algebra."
-        repo = "NathanFallet/makth"
+        repo = "nathanfallet/makth"
         stars = 9
         targets("Multiplatform")
         status = Status.SUNSET
@@ -267,7 +267,7 @@ val portfolio = portfolio {
     library("kaccelero") {
         name = "kaccelero"
         tagline = "An all-in-one toolkit for mobile and web development in Kotlin and Swift."
-        repo = "NathanFallet/kaccelero"
+        repo = "nathanfallet/kaccelero"
         stars = 7
         targets("Multiplatform")
         status = Status.SUNSET
@@ -320,8 +320,8 @@ val portfolio = portfolio {
         name = "iAPush"
         tagline = "Get notified of your App Store and Play Store sales in realtime."
         year = "2025"
-        github("NathanFallet/iapush-app")
-        github("NathanFallet/iapush-backend", "Backend on GitHub")
+        github("nathanfallet/iapush-app")
+        github("nathanfallet/iapush-backend", "Backend on GitHub")
         description = """
             <p>A push notification for every in-app purchase, straight from the stores. Shipped by
             Guimauve Digital. Delisted, but the app and its Ktor backend are open source.</p>
@@ -374,7 +374,7 @@ val portfolio = portfolio {
         year = "2022"
         appStore("1459186328")
         playStore("me.nathanfallet.morpiontpe")
-        github("NathanFallet/MorpionTPE-iOS")
+        github("nathanfallet/MorpionTPE-iOS")
     }
 
     archive("converty") {
@@ -382,7 +382,7 @@ val portfolio = portfolio {
         name = "BaseConverter: Converty"
         tagline = "The fast and easy way to convert numbers between bases."
         year = "2024"
-        github("NathanFallet/converty-app")
+        github("nathanfallet/converty-app")
         description = "<p>Delisted from both stores.</p>"
     }
 
@@ -391,8 +391,8 @@ val portfolio = portfolio {
         name = "Ringify"
         tagline = "Create teams and compete with your friends."
         year = "2024"
-        github("NathanFallet/ringify-app")
-        github("NathanFallet/ringify-backend", "Backend on GitHub")
+        github("nathanfallet/ringify-app")
+        github("nathanfallet/ringify-backend", "Backend on GitHub")
     }
 
     archive("suitebde") {
@@ -400,8 +400,8 @@ val portfolio = portfolio {
         name = "Suite BDE"
         tagline = "An all-in-one tool for French student unions."
         year = "2024"
-        github("NathanFallet/suitebde-backend")
-        github("NathanFallet/suitebde-app", "App on GitHub")
+        github("nathanfallet/suitebde-backend")
+        github("nathanfallet/suitebde-app", "App on GitHub")
     }
 
     archive("craftsearch") {
@@ -416,7 +416,7 @@ val portfolio = portfolio {
         name = "Replica"
         tagline = "A Minecraft minigame where you race to reproduce the picture in front of you."
         year = "2023"
-        github("NathanFallet/replica")
+        github("nathanfallet/replica")
         download("Replica.jar")
         aliases("replicapicturemaker")
         description = """
@@ -429,7 +429,7 @@ val portfolio = portfolio {
         name = "ZabriPermission"
         tagline = "A Minecraft plugin to manage player permissions through groups."
         year = "2018"
-        github("NathanFallet/ZabriPermission")
+        github("nathanfallet/ZabriPermission")
         download("ZabriPermission.jar")
     }
 
@@ -444,7 +444,152 @@ val portfolio = portfolio {
         name = "PickFalling"
         tagline = "A mobile game where you catch falling objects."
         year = "2023"
-        github("NathanFallet/pickfalling-ds")
+        github("nathanfallet/pickfalling-ds")
         description = "<p>Delisted from both stores. A Nintendo DS port was started, and never finished.</p>"
+    }
+
+    // MARK: - Videos
+    //
+    // The links to projects come from the video descriptions and, where those
+    // were silent, from the transcripts.
+
+    video("controlresell-podcast") {
+        youtubeId = "9v5xs-kHddk"
+        title = "Il a QUITTÉ le freelance pour lancer son SaaS"
+        publishedAt = "2026-06-21"
+        channel = "Nicolas Diot"
+        about("controlresell")
+        description = """
+            <p>A long interview about going from freelance mobile developer to SaaS founder:
+            what made my earlier projects fail, how ControlResell grew entirely organically,
+            and what running it actually looks like day to day.</p>
+        """.trimIndent()
+    }
+
+    video("cross-platform-show") {
+        youtubeId = "IiPEvKMtxuY"
+        title = "ControlResell automatise la vente en ligne : React Native ou Kotlin Multiplatform ?"
+        publishedAt = "2025-05-22"
+        channel = "David Leuliette (Cross Platform Show)"
+        about("controlresell")
+        description = """
+            <p>An hour and a half on how ControlResell is actually built: why the app ended up in
+            React Native while everything behind it is Kotlin, and what that trade-off costs.</p>
+        """.trimIndent()
+    }
+
+    video("on-t-parle-app") {
+        youtubeId = "JjtRqHm1X4Y"
+        title = "Ils veulent passer de 400 à 10 000€/mois avec leurs apps mobiles"
+        publishedAt = "2025-04-09"
+        channel = "Les Ignobles (On t'parle app !)"
+        about("flashup", "controlresell")
+        description = """
+            <p>A long conversation about making a living from mobile apps: what worked on FlashUp,
+            what did not, and why ControlResell became the one I bet on.</p>
+        """.trimIndent()
+    }
+
+    video("paywall") {
+        youtubeId = "jAu_nqKwuvY"
+        title = "CONSEILS pour améliorer son PAYWALL dans une app mobile"
+        publishedAt = "2024-06-19"
+        about("iapush")
+        description = """
+            <p>What I changed on my paywalls to raise the revenue of my mobile apps: what to leave
+            free, what to charge for, and how to present it. I take iAPush as the working example.</p>
+        """.trimIndent()
+    }
+
+    video("tiktok") {
+        youtubeId = "UtH0Dn4NVUs"
+        title = "Je comprends RIEN à TikTok !"
+        publishedAt = "2024-06-04"
+        about("ringify")
+        description = """
+            <p>I installed TikTok to try organic acquisition for Ringify. It did not go as planned,
+            and I tell the whole story.</p>
+        """.trimIndent()
+    }
+
+    video("aso") {
+        youtubeId = "dFWgDFFIGFQ"
+        title = "Explose les téléchargements de ton app mobile ! (ASO + astuces)"
+        publishedAt = "2024-06-01"
+        description = """
+            <p>My complete ASO strategy to make the most of organic traffic, with a detailed look at
+            how the App Store and Play Store algorithms actually rank apps.</p>
+        """.trimIndent()
+    }
+
+    video("clean-architecture") {
+        youtubeId = "1s4w-lyQj44"
+        title = "Ma CLEAN ARCHITECTURE projet KMM + KTOR"
+        publishedAt = "2024-05-27"
+        about("extopy")
+        description = """
+            <p>How I structure a Kotlin Multiplatform project with a Ktor backend, from the modules
+            down to the Helm chart. Extopy is the open source example I walk through.</p>
+        """.trimIndent()
+    }
+
+    video("kotlinconf-2024") {
+        youtubeId = "McVRgV10ScI"
+        title = "La #KotlinConf2024 vue par un dev mobile indépendant"
+        publishedAt = "2024-05-23"
+        description = "<p>What KotlinConf 2024 looked like from the seat of an independent mobile developer.</p>"
+    }
+
+    video("kotlin-multiplatform-mobile") {
+        youtubeId = "iujXLCbKRNU"
+        title = "Kotlin Multiplatform Mobile : C'est quoi ?"
+        publishedAt = "2023-07-12"
+        description = "<p>A short explanation of what Kotlin Multiplatform Mobile is, and why I use it.</p>"
+    }
+
+    video("live-jeu-ds") {
+        youtubeId = "FfhIF9qatBk"
+        title = "LIVE - On développe un JEU DS #1"
+        publishedAt = "2023-05-27"
+        about("pickfalling")
+        description = """
+            <p>Live coding session porting PickFalling to the Nintendo DS. The repository was created
+            the same day, and the port was never finished.</p>
+        """.trimIndent()
+    }
+
+    video("apirequest") {
+        youtubeId = "HBbrZJ0f5gg"
+        title = "APIRequest.swift: Fetch data from a REST API in your iOS app"
+        publishedAt = "2020-05-09"
+        about("apirequest")
+        description = "<p>How to call a REST API from an iOS app using my APIRequest package.</p>"
+    }
+
+    video("live-tic-tai-toe-android") {
+        youtubeId = "f_URCGFxfzw"
+        title = "LIVE CODE - Tic TAI Toe for Android? Let's create it! (Part 1)"
+        publishedAt = "2019-04-12"
+        about("tictaitoe")
+        description = "<p>Live coding the Android version of Tic TAI Toe, after a lot of people asked for it.</p>"
+    }
+
+    video("live-tic-tac-toe-swift") {
+        youtubeId = "mRbCu4uizYc"
+        title = "LIVE CODE - Create a tic tac toe game with an AI in Swift"
+        publishedAt = "2019-04-08"
+        about("tictaitoe")
+        description = "<p>Building a tic tac toe game with an AI from scratch to a working iOS app, live.</p>"
+    }
+
+    video("tpe-morpion") {
+        youtubeId = "29M3_ot8dU4"
+        title = "TPE - L'intelligence artificielle : une IA imbattable au Morpion"
+        publishedAt = "2019-01-09"
+        about("tictaitoe")
+        description = """
+            <p>A school project with Raoul Doyez: building an unbeatable tic tac toe AI. This is where
+            everything that became Tic TAI Toe started.</p>
+        """.trimIndent()
     }
 }

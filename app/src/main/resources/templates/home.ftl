@@ -1,4 +1,5 @@
 <#import "layout.ftl" as l>
+<#import "videogrid.ftl" as g>
 <@l.page view.layout>
 
 <section class="hero">
@@ -119,6 +120,33 @@
         </div>
     </div>
 </section>
+
+<#if view.videos?size gt 0>
+<section class="section" id="videos">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Videos</span>
+            <h2>What I talk about</h2>
+            <p>Architecture, Kotlin Multiplatform, and the business side of shipping mobile apps.
+                Most of them are in French.</p>
+        </div>
+        <@g.grid view.videos/>
+    </div>
+</section>
+</#if>
+
+<#if view.appearances?size gt 0>
+<section class="section" id="appearances">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Elsewhere</span>
+            <h2>Guest appearances</h2>
+            <p>Podcasts and interviews on other people's channels.</p>
+        </div>
+        <@g.grid view.appearances/>
+    </div>
+</section>
+</#if>
 
 <section class="section" id="archives">
     <div class="wrap">

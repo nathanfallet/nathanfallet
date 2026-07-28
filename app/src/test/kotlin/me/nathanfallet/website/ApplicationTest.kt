@@ -13,6 +13,7 @@ import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.services.GitHubContributionsService
 import me.nathanfallet.website.domain.services.GitHubStatsService
 import me.nathanfallet.website.domain.services.PullRequest
+import me.nathanfallet.website.domain.services.ThumbnailService
 import me.nathanfallet.website.domain.services.RepositoryStats
 import me.nathanfallet.website.presentation.config.configureErrorHandling
 import me.nathanfallet.website.presentation.config.configureRouting
@@ -44,6 +45,13 @@ private class FakeGitHubContributionsService : GitHubContributionsService {
 }
 
 /**
+ * A one pixel JPEG, so the thumbnail route can be exercised offline.
+ */
+private class FakeThumbnailService : ThumbnailService {
+    override suspend fun thumbnail(youtubeId: String) = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte(), 0xD9.toByte())
+}
+
+/**
  * Stands in for a GitHub API that cannot be reached at all.
  */
 private class OfflineGitHubStatsService : GitHubStatsService {
@@ -57,7 +65,8 @@ private fun Application.testModule(statsService: GitHubStatsService = FakeGitHub
                 single<Portfolio> { portfolio }
                 single<GitHubStatsService> { statsService }
                 single<GitHubContributionsService> { FakeGitHubContributionsService() }
-                single { WebsiteRoutesDependencies(get(), get(), get()) }
+                single<ThumbnailService> { FakeThumbnailService() }
+                single { WebsiteRoutesDependencies(get(), get(), get(), get()) }
             }
         )
     }
@@ -146,6 +155,28 @@ class ApplicationTest {
         portfolio.contributions.forEach {
             assertTrue(body.contains("/projects/${it.id}"), "home does not link to ${it.repo}")
         }
+    }
+
+    @Test
+    fun everyVideoHasItsOwnPageAndThumbnail() = testApplication {
+        application { testModule() }
+        portfolio.videos.forEach { video ->
+            assertEquals(HttpStatusCode.OK, client.get(video.path).status, "${video.path} is broken")
+            assertEquals(
+                HttpStatusCode.OK,
+                client.get("${video.path}/thumbnail.jpg").status,
+                "thumbnail of ${video.id} is broken",
+            )
+        }
+    }
+
+    @Test
+    fun guestAppearancesAreSeparatedFromMyOwnVideos() = testApplication {
+        application { testModule() }
+        assertTrue(portfolio.appearances.all { it.channel != null })
+        assertTrue(portfolio.ownVideos.all { it.channel == null })
+        val body = client.get("/videos").bodyAsText()
+        assertTrue(body.contains("Guest appearances"), "the appearances section is missing")
     }
 
     @Test

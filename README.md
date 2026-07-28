@@ -24,11 +24,11 @@ I’ve also worked on tools like kaccelero, zodable, and many others for Kotlin/
 
 ## 📈 GitHub Stats
 
-![Stats](https://github-readme-stats.vercel.app/api?username=NathanFallet&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=false)
+![Stats](https://github-readme-stats.vercel.app/api?username=nathanfallet&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=false)
 
-![Streak](https://github-readme-streak-stats.herokuapp.com/?user=NathanFallet&theme=tokyonight&hide_border=true)
+![Streak](https://github-readme-streak-stats.herokuapp.com/?user=nathanfallet&theme=tokyonight&hide_border=true)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NathanFallet&include_all_commits=true&count_private=true&theme=tokyonight&langs_count=6&hide_border=true&layout=compact)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=nathanfallet&include_all_commits=true&count_private=true&theme=tokyonight&langs_count=6&hide_border=true&layout=compact)
 
 My GitHub stats (above) show my contributions and top languages. Kotlin and Swift dominate, reflecting my focus. Feel free to browse my GitHub profile for details on all my projects and activity.
 

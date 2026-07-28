@@ -39,6 +39,19 @@ library("kdriver") {
 contribution("ktorio/ktor", stars = 14495)      // name and description come from GitHub
 contribution("twostraws/CodeScanner", maintainer = true)  // flags the ones I co-maintain
 
+video("clean-architecture") {
+    youtubeId = "1s4w-lyQj44"                   // the `v=` part of the watch URL
+    title = "Ma CLEAN ARCHITECTURE projet KMM + KTOR"
+    publishedAt = "2024-05-27"
+    about("extopy")                             // must match declared entries
+}
+
+video("cross-platform-show") {
+    youtubeId = "IiPEvKMtxuY"
+    channel = "David Leuliette (Cross Platform Show)"  // someone else's channel: a guest appearance
+    about("controlresell")
+}
+
 archive("replica") {
     year = "2023"
     download("Replica.jar")
@@ -49,6 +62,11 @@ archive("replica") {
 
 `poweredBy` is declared once, on the product or the archive. The reverse index — which entries a
 library powers — is derived from it, so a library page never has to repeat the relation.
+
+Videos declared with a `channel` are guest appearances and land in their own section; the others are
+mine. `about(...)` links a video to the projects it talks about, and the project page shows the
+videos back. Thumbnails are proxied through `/videos/{id}/thumbnail.jpg` and cached in memory, so
+the browser never talks to Google.
 
 Contributions get their own page, listing my merged pull requests on the repository. They are read
 from the GitHub search API when the page is viewed — one request, cached for 24 hours — because that

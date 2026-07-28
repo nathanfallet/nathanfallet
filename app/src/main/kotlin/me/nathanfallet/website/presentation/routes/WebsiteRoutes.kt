@@ -10,6 +10,7 @@ import me.nathanfallet.website.domain.models.Library
 import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.services.GitHubContributionsService
 import me.nathanfallet.website.domain.services.GitHubStatsService
+import me.nathanfallet.website.domain.services.ThumbnailService
 import me.nathanfallet.website.presentation.mappers.*
 import me.nathanfallet.website.presentation.views.*
 
@@ -17,6 +18,7 @@ data class WebsiteRoutesDependencies(
     val portfolio: Portfolio,
     val gitHubStatsService: GitHubStatsService,
     val gitHubContributionsService: GitHubContributionsService,
+    val thumbnailService: ThumbnailService,
 )
 
 /**
@@ -57,6 +59,8 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         libraries = libraries,
                         contributions = contributions,
                         archives = portfolio.archives.map { it.toArchiveView() },
+                        videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
+                        appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
                         totalStars = libraries.sumOf { it.stars },
                     )
                 )
@@ -81,6 +85,41 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                 )
             )
         )
+    }
+
+    get("/videos") {
+        call.respond(
+            FreeMarkerContent(
+                "videos.ftl",
+                mapOf(
+                    "view" to VideosPageView(
+                        layout = LayoutView(
+                            title = "Videos",
+                            description = "Videos from my YouTube channel, about the projects I build.",
+                            canonical = "${Profile.BASE_URL}/videos",
+                            snippets = listOf(breadcrumbSnippet("Videos", "${Profile.BASE_URL}/videos")),
+                        ),
+                        videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
+                        appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
+                    )
+                )
+            )
+        )
+    }
+
+    get("/videos/{id}") {
+        val video = portfolio.video(call.parameters["id"]!!)
+            ?: return@get call.respond(HttpStatusCode.NotFound)
+        call.respond(FreeMarkerContent("video.ftl", mapOf("view" to video.toVideoPageView(portfolio))))
+    }
+
+    get("/videos/{id}/thumbnail.jpg") {
+        val video = portfolio.video(call.parameters["id"]!!)
+            ?: return@get call.respond(HttpStatusCode.NotFound)
+        val bytes = thumbnailService.thumbnail(video.youtubeId)
+            ?: return@get call.respond(HttpStatusCode.NotFound)
+        call.response.cacheControl(CacheControl.MaxAge(maxAgeSeconds = 60 * 60 * 24 * 7))
+        call.respondBytes(bytes, ContentType.Image.JPEG)
     }
 
     get("/projects/{id}") {
@@ -118,8 +157,13 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
     }
 
     get("/sitemap.xml") {
-        val urls = listOf("${Profile.BASE_URL}/", "${Profile.BASE_URL}/archives") +
-                portfolio.entries.map { Profile.BASE_URL + it.path() }
+        val urls = listOf(
+            "${Profile.BASE_URL}/",
+            "${Profile.BASE_URL}/archives",
+            "${Profile.BASE_URL}/videos",
+        ) +
+                portfolio.entries.map { Profile.BASE_URL + it.path() } +
+                portfolio.videos.map { Profile.BASE_URL + it.path }
         call.respondText(contentType = ContentType.Text.Xml) {
             buildString {
                 appendLine("""<?xml version="1.0" encoding="UTF-8"?>""")

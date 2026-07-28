@@ -168,6 +168,35 @@ data class Archive(
 }
 
 /**
+ * A video from my YouTube channel, optionally about some of the entries above.
+ */
+data class Video(
+    val id: String,
+    /**
+     * The YouTube identifier, used for the thumbnail and the watch link.
+     */
+    val youtubeId: String,
+    val title: String,
+    val description: String?,
+    /**
+     * ISO date of publication.
+     */
+    val publishedAt: String,
+    /**
+     * Identifiers of the entries this video talks about.
+     */
+    val about: List<String>,
+    /**
+     * The channel it was published on, when it is not mine. Being a guest is
+     * not the same thing as publishing something myself.
+     */
+    val channel: String? = null,
+) {
+    val path: String get() = "/videos/$id"
+    val watchUrl: String get() = "https://www.youtube.com/watch?v=$youtubeId"
+}
+
+/**
  * The whole content of the website.
  */
 data class Portfolio(
@@ -175,6 +204,7 @@ data class Portfolio(
     val libraries: List<Library>,
     val contributions: List<Contribution>,
     val archives: List<Archive>,
+    val videos: List<Video>,
 ) {
 
     private val entriesById: Map<String, Entry> =
@@ -198,6 +228,33 @@ data class Portfolio(
      * All entries, used to generate the sitemap.
      */
     val entries: Collection<Entry> get() = entriesById.values
+
+    private val videosById: Map<String, Video> = videos.associateBy(Video::id)
+
+    /**
+     * The videos I published myself, most recent first.
+     */
+    val ownVideos: List<Video> get() = videos.filter { it.channel == null }.sortedByDescending(Video::publishedAt)
+
+    /**
+     * The ones I only take part in, on somebody else's channel.
+     */
+    val appearances: List<Video> get() = videos.filter { it.channel != null }.sortedByDescending(Video::publishedAt)
+
+    private val videosByEntry: Map<String, List<Video>> =
+        videos.flatMap { video -> video.about.map { it to video } }
+            .groupBy({ it.first }, { it.second })
+
+    /**
+     * Finds a video by its identifier.
+     */
+    fun video(id: String): Video? = videosById[id]
+
+    /**
+     * The videos talking about an entry, most recent first.
+     */
+    fun videosAbout(entry: Entry): List<Video> =
+        videosByEntry[entry.id].orEmpty().sortedByDescending(Video::publishedAt)
 
     /**
      * Resolves the libraries an entry runs on.

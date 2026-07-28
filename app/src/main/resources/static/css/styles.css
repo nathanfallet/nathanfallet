@@ -528,6 +528,15 @@ code {
     padding: 3.5rem 0 4rem;
 }
 
+/* When a listing page opens with a heading, the two paddings stack up. */
+.entry + .section {
+    padding-top: 0;
+}
+
+.entry:has(+ .section) {
+    padding-bottom: 2rem;
+}
+
 .entry-kind {
     font-size: 0.75rem;
     font-weight: 650;
@@ -695,6 +704,85 @@ code {
     white-space: nowrap;
 }
 
+/* Videos */
+
+.videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem 1.25rem;
+}
+
+.video {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+}
+
+.thumb,
+.video-hero {
+    position: relative;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    aspect-ratio: 16 / 9;
+    transition: border-color 0.15s, transform 0.15s;
+}
+
+.thumb img,
+.video-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video:hover .thumb,
+.video-hero:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.thumb .play,
+.video-hero .play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.35));
+    opacity: 0.85;
+    transition: opacity 0.15s;
+}
+
+.video-hero {
+    margin-bottom: 1.5rem;
+}
+
+.video-hero .play {
+    font-size: 2.5rem;
+}
+
+.video:hover .play,
+.video-hero:hover .play {
+    opacity: 1;
+}
+
+.video-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.video-meta {
+    font-size: 0.8rem;
+    color: var(--fg-faint);
+    font-variant-numeric: tabular-nums;
+}
+
 /* Error page */
 
 .error {
@@ -733,6 +821,17 @@ code {
 }
 
 .site-footer a:hover {
+    color: var(--accent);
+}
+
+.built-with {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--fg-faint);
+}
+
+.built-with a {
     color: var(--accent);
 }
 
