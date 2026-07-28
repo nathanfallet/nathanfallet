@@ -1,6 +1,7 @@
 package me.nathanfallet.website.data
 
 import me.nathanfallet.website.domain.dsl.portfolio
+import me.nathanfallet.website.domain.models.LinkKind
 import me.nathanfallet.website.domain.models.Status
 
 /**
@@ -71,7 +72,7 @@ val portfolio = portfolio {
         website("https://cdpdriver.github.io/kdriver/")
         description = """
             <p>A CDP-based browser automation library for Kotlin, in the same family as
-            <a href="https://github.com/cdpdriver/zendriver">zendriver</a> on the Python side.
+            <a href="/projects/zendriver">zendriver</a>, which I co-maintain on the Python side.
             It drives every marketplace connector behind ControlResell.</p>
             <p>It comes with satellites: <a href="https://github.com/cdpdriver/kdriver-proxy">kdriver-proxy</a>
             (a pure Kotlin SOCKS5 proxy), <a href="https://github.com/cdpdriver/kdriver-mcp">kdriver-mcp</a>
@@ -288,6 +289,35 @@ val portfolio = portfolio {
         status = Status.SUNSET
     }
 
+    library("keychain-swift") {
+        name = "Keychain.swift"
+        tagline = "The easiest way to store data securely in the keychain, with a UserDefaults-like API."
+        repo = "groupeminaste/Keychain.swift"
+        stars = 7
+        targets("iOS", "macOS")
+        swiftPackage()
+        status = Status.SUNSET
+    }
+
+    library("fmnetwork") {
+        name = "FMNetwork"
+        tagline = "The FMobile developer pack: read the mobile network state from Swift."
+        repo = "groupeminaste/FMNetwork"
+        stars = 2
+        targets("iOS")
+        swiftPackage()
+        status = Status.SUNSET
+    }
+
+    library("digianalytics") {
+        name = "DigiAnalytics"
+        tagline = "Realtime web analytics with privacy and simplicity at its core."
+        repo = "groupeminaste/DigiAnalytics"
+        targets("iOS", "macOS")
+        swiftPackage()
+        status = Status.SUNSET
+    }
+
     library("makth") {
         maven("dev.makth", "core")
         name = "makth"
@@ -313,6 +343,11 @@ val portfolio = portfolio {
     // Only the repository is declared: name, description and stars come from GitHub.
     // `maintainer = true` marks the ones I co-maintain, not just contributed to.
 
+    contribution(
+        "cdpdriver/zendriver", "zendriver",
+        "A blazing fast, async-first, undetectable web scraping framework for Python.",
+        1375, maintainer = true,
+    )
     contribution("ktorio/ktor", "Ktor", "The Kotlin framework for connected applications.", 14495)
     contribution("ktorio/ktor-documentation", "Ktor documentation", "Documentation for the Ktor framework.", 538)
     contribution("JetBrains/koog", "Koog", "JetBrains' JVM framework for building AI agents.", 4477)
@@ -322,6 +357,12 @@ val portfolio = portfolio {
     contribution("rabbitmq/rabbitmq-website", "RabbitMQ website", "The RabbitMQ website.", 1214)
     contribution("DamirDenis-Tudor/ktor-server-rabbitmq", "ktor-server-rabbitmq", "The RabbitMQ plugin for Ktor.", 35)
     contribution("fabrikt-io/fabrikt", "Fabrikt", "Generates Kotlin code from OpenAPI 3 specifications.", 281)
+    contribution("vapor-community/Lingo-Vapor", "Lingo-Vapor",
+        "The Vapor provider for Lingo, the Swift localization library.", 59)
+    contribution("vapor-community/google-cloud-kit", "google-cloud-kit",
+        "A Swift toolkit for the Google Cloud Platform APIs.", 57)
+    contribution("vapor-community/vapor-sitemap", "vapor-sitemap",
+        "A dynamic sitemap generator for Vapor.", 8, maintainer = true)
     contribution("krzyzanowskim/CryptoSwift", "CryptoSwift", "Cryptographic algorithms implemented in Swift.", 10559, maintainer = true)
     contribution("stephencelis/SQLite.swift", "SQLite.swift", "A type-safe Swift layer over SQLite3.", 10187, maintainer = true)
     contribution("twostraws/CodeScanner", "CodeScanner", "A SwiftUI view that scans barcodes and QR codes.", 1220, maintainer = true)
@@ -395,6 +436,7 @@ val portfolio = portfolio {
     }
 
     archive("fmobile") {
+        poweredBy("fmnetwork")
         name = "FMobile"
         tagline = "The all-in-one iOS app to manage a Free Mobile line: roaming, usage, field test codes."
         year = "2023"
@@ -437,6 +479,21 @@ val portfolio = portfolio {
         year = "2024"
         github("nathanfallet/suitebde-backend")
         github("nathanfallet/suitebde-app", "App on GitHub")
+    }
+
+    archive("code-community") {
+        name = "code.community"
+        tagline = "A developer community on Instagram, grown to 80,000 followers."
+        year = "2020"
+        link(LinkKind.WEBSITE, "Instagram", "https://www.instagram.com/code.community/")
+        description = """
+            <p>I ran code.community for a few years as a teenager: daily posts about programming,
+            reposts from the people who followed it, and a handful of small projects built for the
+            audience. It reached around 80,000 followers before I stopped posting in 2020.</p>
+            <p>It is also where I learned that shipping something is only half the work, and that
+            an audience is built one post at a time. That lesson is still what the products above
+            run on.</p>
+        """.trimIndent()
     }
 
     archive("craftsearch") {
@@ -487,6 +544,19 @@ val portfolio = portfolio {
     //
     // The links to projects come from the video descriptions and, where those
     // were silent, from the transcripts.
+
+    // MARK: - Written about me
+
+    article(
+        id = "code-community-interview",
+        title = "Chit-chat with Nathan Fallet, the manager of code.community",
+        url = "https://www.creative-tim.com/blog/web-design/chit-chat-nathan-fallet-founder-code-community/",
+        publisher = "Creative Tim",
+        publishedAt = "2019-04-12",
+        summary = "An interview at 16, about running code.community and learning to build in public.",
+        image = "https://www.creative-tim.com/blog/content/images/wordpress/2019/04/" +
+                "Screen-Shot-2019-04-12-at-19.45.31.png",
+    )
 
     video("controlresell-podcast") {
         youtubeId = "9v5xs-kHddk"

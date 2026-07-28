@@ -69,6 +69,7 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         archives = portfolio.archives.map { it.toArchiveView() },
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
+                        articles = portfolio.articles.map { it.toArticleView() },
                         openSourceProjects = libraries.size + contributions.size,
                         totalStars = libraries.sumOf { it.stars } + maintained.sumOf { it.stars },
                         videoCount = portfolio.videos.size,
@@ -111,6 +112,7 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         ),
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
+                        articles = portfolio.articles.map { it.toArticleView() },
                     )
                 )
             )
@@ -127,6 +129,15 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
         val video = portfolio.video(call.parameters["id"]!!)
             ?: return@get call.respond(HttpStatusCode.NotFound)
         val bytes = thumbnailService.thumbnail(video.youtubeId)
+            ?: return@get call.respond(HttpStatusCode.NotFound)
+        call.response.cacheControl(CacheControl.MaxAge(maxAgeSeconds = 60 * 60 * 24 * 7))
+        call.respondBytes(bytes, ContentType.Image.JPEG)
+    }
+
+    get("/articles/{id}/thumbnail.jpg") {
+        val image = portfolio.article(call.parameters["id"]!!)?.image
+            ?: return@get call.respond(HttpStatusCode.NotFound)
+        val bytes = thumbnailService.image(image)
             ?: return@get call.respond(HttpStatusCode.NotFound)
         call.response.cacheControl(CacheControl.MaxAge(maxAgeSeconds = 60 * 60 * 24 * 7))
         call.respondBytes(bytes, ContentType.Image.JPEG)

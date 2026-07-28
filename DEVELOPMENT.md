@@ -80,6 +80,11 @@ Each coordinate also links to where the package can be browsed: klibs.io, the Gr
 npm, or the Swift Package Index when `indexed = true` — not every Swift package is listed there, and
 linking to a "package not found" page would be worse than not linking.
 
+`article(...)` records something somebody else wrote about me. Articles have no page of their own —
+the card links straight to the publisher — and they sit next to the guest appearances. An `image` is
+proxied through `/articles/{id}/thumbnail.jpg` like the video thumbnails: everything is downscaled
+and re-encoded as JPEG server side, so a 1.3 MB PNG becomes a 76 KB card and nothing is hotlinked.
+
 Videos declared with a `channel` are guest appearances and land in their own section; the others are
 mine. `about(...)` links a video to the projects it talks about, and the project page shows the
 videos back. Thumbnails are proxied through `/videos/{id}/thumbnail.jpg` and cached in memory, so

@@ -350,6 +350,8 @@ code {
 
 .chip {
     font-family: var(--mono);
+    /* Names like `stripe-to-amplitude` would otherwise break on their hyphens. */
+    white-space: nowrap;
     font-size: 0.8rem;
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
@@ -425,12 +427,15 @@ code {
 }
 
 .tag {
+    display: inline-block;
     font-size: 0.72rem;
     letter-spacing: 0.02em;
     padding: 0.15rem 0.5rem;
     border-radius: 6px;
     border: 1px solid var(--border);
     color: var(--fg-faint);
+    /* A badge is one object: it must never be split across two lines. */
+    white-space: nowrap;
 }
 
 .tag-powers {
@@ -817,6 +822,36 @@ code {
 .video:hover .play,
 .video-hero:hover .play {
     opacity: 1;
+}
+
+/* Article illustrations are usually screenshots: keep the top, that is where
+   the meaningful part sits. */
+.article-thumb img {
+    object-position: top;
+}
+
+.thumb.article-cover {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem;
+    background: var(--accent-soft);
+    border-color: var(--border-strong);
+}
+
+.article-kind {
+    font-size: 0.7rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+.article-publisher {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
 }
 
 .video-title {

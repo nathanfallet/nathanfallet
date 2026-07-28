@@ -79,10 +79,24 @@ data class VideoPageView(
     val about: List<EntryRefView>,
 )
 
+data class ArticleView(
+    val title: String,
+    val url: String,
+    /**
+     * Null when the article has no illustration: the card then falls back to a
+     * typographic cover.
+     */
+    val thumbnail: String?,
+    val publisher: String,
+    val publishedAt: String,
+    val summary: String?,
+)
+
 data class VideosPageView(
     val layout: LayoutView,
     val videos: List<VideoView>,
     val appearances: List<VideoView>,
+    val articles: List<ArticleView>,
 )
 
 data class InstallView(
@@ -142,6 +156,7 @@ data class HomeView(
     val archives: List<ArchiveView>,
     val videos: List<VideoView>,
     val appearances: List<VideoView>,
+    val articles: List<ArticleView>,
     /**
      * Every open source project I have worked on: mine, the ones I co-maintain
      * and the ones I only contributed to.

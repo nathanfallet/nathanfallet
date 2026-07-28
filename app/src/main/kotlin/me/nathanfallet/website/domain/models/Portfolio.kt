@@ -196,6 +196,31 @@ data class Video(
 }
 
 /**
+ * Something somebody else wrote about me. Not hosted here, so it has no page of
+ * its own: the row links straight out.
+ */
+data class Article(
+    val id: String,
+    val title: String,
+    val url: String,
+    /**
+     * Who published it.
+     */
+    val publisher: String,
+    /**
+     * ISO date of publication.
+     */
+    val publishedAt: String,
+    val summary: String?,
+    /**
+     * The illustration to show, served through this website rather than hotlinked.
+     */
+    val image: String?,
+) {
+    val thumbnailPath: String get() = "/articles/$id/thumbnail.jpg"
+}
+
+/**
  * The whole content of the website.
  */
 data class Portfolio(
@@ -204,6 +229,7 @@ data class Portfolio(
     val contributions: List<Contribution>,
     val archives: List<Archive>,
     val videos: List<Video>,
+    val articles: List<Article>,
 ) {
 
     private val entriesById: Map<String, Entry> =
@@ -248,6 +274,11 @@ data class Portfolio(
      * Finds a video by its identifier.
      */
     fun video(id: String): Video? = videosById[id]
+
+    /**
+     * Finds an article by its identifier.
+     */
+    fun article(id: String): Article? = articles.firstOrNull { it.id == id }
 
     /**
      * The videos talking about an entry, most recent first.

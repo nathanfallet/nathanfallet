@@ -50,7 +50,9 @@ private class FakeGitHubContributionsService : GitHubContributionsService {
  * A one pixel JPEG, so the thumbnail route can be exercised offline.
  */
 private class FakeThumbnailService : ThumbnailService {
-    override suspend fun thumbnail(youtubeId: String) = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte(), 0xD9.toByte())
+    private val jpeg = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte(), 0xD9.toByte())
+    override suspend fun thumbnail(youtubeId: String) = jpeg
+    override suspend fun image(url: String) = jpeg
 }
 
 /**
@@ -209,6 +211,18 @@ class ApplicationTest {
             client.get("/projects/unlockpremium").bodyAsText().contains("swiftpackageindex.com"),
             "UnlockPremium is not listed and must not link to a missing page",
         )
+    }
+
+    @Test
+    fun articleIllustrationsAreServedFromHere() = testApplication {
+        application { testModule() }
+        portfolio.articles.filter { it.image != null }.forEach {
+            assertEquals(
+                HttpStatusCode.OK,
+                client.get(it.thumbnailPath).status,
+                "the illustration of ${it.id} is not served",
+            )
+        }
     }
 
     @Test

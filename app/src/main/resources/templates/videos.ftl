@@ -23,9 +23,9 @@
         <div class="section-head">
             <span class="eyebrow">Elsewhere</span>
             <h2>Guest appearances</h2>
-            <p>Podcasts and interviews on other people's channels.</p>
+            <p>Podcasts, interviews and articles on other people's channels.</p>
         </div>
-        <@g.grid view.appearances/>
+        <@g.elsewhere view.appearances view.articles/>
     </div>
 </section>
 </#if>

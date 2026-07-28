@@ -1,6 +1,7 @@
 package me.nathanfallet.website.domain.dsl
 
 import me.nathanfallet.website.domain.models.Archive
+import me.nathanfallet.website.domain.models.Article
 import me.nathanfallet.website.domain.models.Contribution
 import me.nathanfallet.website.domain.models.Coordinate
 import me.nathanfallet.website.domain.models.Entry
@@ -233,6 +234,7 @@ class PortfolioBuilder {
     private val contributions = mutableListOf<Contribution>()
     private val archives = mutableListOf<Archive>()
     private val videos = mutableListOf<Video>()
+    private val articles = mutableListOf<Article>()
 
     fun product(id: String, block: ProductBuilder.() -> Unit) {
         products += ProductBuilder(id).apply(block).build()
@@ -259,6 +261,21 @@ class PortfolioBuilder {
 
     fun video(id: String, block: VideoBuilder.() -> Unit) {
         videos += VideoBuilder(id).apply(block).build()
+    }
+
+    /**
+     * An article somebody else wrote about me.
+     */
+    fun article(
+        id: String,
+        title: String,
+        url: String,
+        publisher: String,
+        publishedAt: String,
+        summary: String? = null,
+        image: String? = null,
+    ) {
+        articles += Article(id, title, url, publisher, publishedAt, summary, image)
     }
 
     internal fun build(): Portfolio {
@@ -288,7 +305,7 @@ class PortfolioBuilder {
         val videoIds = videos.map(Video::id)
         require(videoIds.size == videoIds.toSet().size) { "Duplicate video identifiers" }
 
-        return Portfolio(products, resolved, contributions, archives, videos)
+        return Portfolio(products, resolved, contributions, archives, videos, articles)
     }
 }
 

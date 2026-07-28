@@ -12,4 +12,9 @@ interface ThumbnailService {
      * fetched.
      */
     suspend fun thumbnail(youtubeId: String): ByteArray?
+
+    /**
+     * Same, for an arbitrary image URL: an article illustration, for instance.
+     */
+    suspend fun image(url: String): ByteArray?
 }

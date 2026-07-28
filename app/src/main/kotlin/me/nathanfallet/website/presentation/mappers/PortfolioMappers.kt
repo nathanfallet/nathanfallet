@@ -2,6 +2,7 @@ package me.nathanfallet.website.presentation.mappers
 
 import me.nathanfallet.website.data.Profile
 import me.nathanfallet.website.domain.models.Archive
+import me.nathanfallet.website.domain.models.Article
 import me.nathanfallet.website.domain.models.Contribution
 import me.nathanfallet.website.domain.models.Coordinate
 import me.nathanfallet.website.domain.models.Entry
@@ -15,6 +16,7 @@ import me.nathanfallet.website.domain.models.Video
 import me.nathanfallet.website.domain.services.PullRequest
 import me.nathanfallet.website.domain.services.RepositoryStats
 import me.nathanfallet.website.presentation.views.ArchiveView
+import me.nathanfallet.website.presentation.views.ArticleView
 import me.nathanfallet.website.presentation.views.ContributionView
 import me.nathanfallet.website.presentation.views.EntryPageView
 import me.nathanfallet.website.presentation.views.EntryRefView
@@ -94,6 +96,15 @@ fun Video.toVideoPageView(portfolio: Portfolio) = VideoPageView(
     watchUrl = watchUrl,
     publishedAt = publishedAt,
     about = about.mapNotNull(portfolio::entry).map { it.toRefView() },
+)
+
+fun Article.toArticleView() = ArticleView(
+    title = title,
+    url = url,
+    thumbnail = thumbnailPath.takeIf { image != null },
+    publisher = publisher,
+    publishedAt = publishedAt,
+    summary = summary,
 )
 
 fun Archive.toArchiveView() = ArchiveView(
