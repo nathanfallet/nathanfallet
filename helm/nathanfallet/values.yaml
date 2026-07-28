@@ -9,6 +9,12 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
+# Read-only GitHub token, used to fetch star counts. Optional: without it the
+# app falls back to unauthenticated calls (60 requests per hour and per IP).
+github:
+  tokenSecret: ""
+  tokenSecretKey: token
+
 imagePullSecrets:
   - name: dockerconfig-nathanfallet
 nameOverride: ""
