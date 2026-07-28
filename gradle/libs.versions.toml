@@ -1,0 +1,38 @@
+[versions]
+kotlin = "2.3.0"
+ktor = "3.4.3"
+koin = "4.1.0"
+logback = "1.5.20"
+kotlinx-coroutines = "1.10.0"
+kotlinx-serialization = "1.9.0"
+kotlinx-datetime = "0.6.2"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-testJunit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+ktor-serverCore = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-serverNetty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
+ktor-serverFreemarker = { module = "io.ktor:ktor-server-freemarker", version.ref = "ktor" }
+ktor-serverResources = { module = "io.ktor:ktor-server-resources", version.ref = "ktor" }
+ktor-serverStatusPages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor" }
+ktor-serverCallLogging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
+ktor-serverCompression = { module = "io.ktor:ktor-server-compression", version.ref = "ktor" }
+ktor-serverAutoHeadResponse = { module = "io.ktor:ktor-server-auto-head-response", version.ref = "ktor" }
+ktor-serverCachingHeaders = { module = "io.ktor:ktor-server-caching-headers", version.ref = "ktor" }
+ktor-serverDefaultHeaders = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor" }
+ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
+ktor-clientCore = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-clientCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-clientContentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serializationKotlinxJson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }

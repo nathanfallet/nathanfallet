@@ -42,6 +42,15 @@ spec:
           env:
             - name: TZ
               value: "Europe/Paris"
+            {{- if .Values.github.tokenSecret }}
+            # Raises the GitHub API rate limit from 60 to 5000 requests per hour,
+            # which matters as soon as more than one replica is running.
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.github.tokenSecret }}
+                  key: {{ .Values.github.tokenSecretKey }}
+            {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
