@@ -3,6 +3,7 @@ package me.nathanfallet.website.presentation.mappers
 import me.nathanfallet.website.data.Profile
 import me.nathanfallet.website.domain.models.Archive
 import me.nathanfallet.website.domain.models.Contribution
+import me.nathanfallet.website.domain.models.Coordinate
 import me.nathanfallet.website.domain.models.Entry
 import me.nathanfallet.website.domain.models.Library
 import me.nathanfallet.website.domain.models.Link
@@ -17,6 +18,7 @@ import me.nathanfallet.website.presentation.views.ArchiveView
 import me.nathanfallet.website.presentation.views.ContributionView
 import me.nathanfallet.website.presentation.views.EntryPageView
 import me.nathanfallet.website.presentation.views.EntryRefView
+import me.nathanfallet.website.presentation.views.InstallView
 import me.nathanfallet.website.presentation.views.LayoutView
 import me.nathanfallet.website.presentation.views.LibraryView
 import me.nathanfallet.website.presentation.views.LinkView
@@ -102,6 +104,52 @@ fun Archive.toArchiveView() = ArchiveView(
 )
 
 /**
+ * Turns a coordinate into something that can be pasted into a build file. The
+ * version is whatever the registry says today, so nothing here goes stale.
+ */
+fun Coordinate.toInstallView(repo: String, version: String?): InstallView {
+    val owner = repo.substringBefore('/')
+    val name = repo.substringAfter('/')
+    return when (this) {
+        is Coordinate.Maven -> InstallView(
+            label = "Gradle",
+            snippet = """implementation("$group:$artifact:${version ?: "<version>"}")""",
+            url = "https://klibs.io/project/$owner/$name",
+            urlLabel = "klibs.io",
+        )
+
+        is Coordinate.GradlePlugin -> InstallView(
+            label = "Gradle plugin",
+            snippet = if (version != null) """id("$id") version "$version"""" else """id("$id")""",
+            url = "https://plugins.gradle.org/plugin/$id",
+            urlLabel = "Gradle Plugin Portal",
+        )
+
+        is Coordinate.SwiftPackage -> InstallView(
+            label = "Swift Package Manager",
+            snippet = if (version != null) """.package(url: "$url", from: "$version")"""
+            else """.package(url: "$url", branch: "main")""",
+            url = "https://swiftpackageindex.com/$owner/${name.lowercase()}".takeIf { indexed },
+            urlLabel = "Swift Package Index".takeIf { indexed },
+        )
+
+        is Coordinate.GitHubAction -> InstallView(
+            label = "GitHub Actions",
+            snippet = "uses: ${this.repo}@$version",
+            url = "https://github.com/${this.repo}",
+            urlLabel = "GitHub",
+        )
+
+        is Coordinate.NpmPackage -> InstallView(
+            label = "npm",
+            snippet = "npm install ${this.name}",
+            url = "https://www.npmjs.com/package/${this.name}",
+            urlLabel = "npm",
+        )
+    }
+}
+
+/**
  * Builds the page of any entry, whatever its kind: the differences are only in
  * the metadata and the related entries.
  */
@@ -109,6 +157,7 @@ fun Entry.toEntryPageView(
     portfolio: Portfolio,
     stats: Map<String, RepositoryStats>,
     pullRequests: List<PullRequest> = emptyList(),
+    install: List<InstallView> = emptyList(),
 ): EntryPageView {
     val videos = portfolio.videosAbout(this).map { it.toVideoView(portfolio) }
     val meta = mutableListOf<MetaView>()
@@ -180,6 +229,7 @@ fun Entry.toEntryPageView(
             PullRequestView(it.number, it.title, it.url, it.mergedAt)
         },
         videos = videos,
+        install = install,
     )
 }
 

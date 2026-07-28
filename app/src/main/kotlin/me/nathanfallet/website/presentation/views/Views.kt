@@ -85,6 +85,22 @@ data class VideosPageView(
     val appearances: List<VideoView>,
 )
 
+data class InstallView(
+    /**
+     * The ecosystem, e.g. "Gradle" or "Swift Package Manager".
+     */
+    val label: String,
+    /**
+     * The line to copy into a build file.
+     */
+    val snippet: String,
+    /**
+     * Where to read more about the package, when such a place exists.
+     */
+    val url: String?,
+    val urlLabel: String?,
+)
+
 data class MetaView(
     val label: String,
     val value: String,
@@ -154,6 +170,7 @@ data class EntryPageView(
     val related: List<RelatedGroupView>,
     val pullRequests: List<PullRequestView>,
     val videos: List<VideoView>,
+    val install: List<InstallView>,
 )
 
 data class ArchivesPageView(

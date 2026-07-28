@@ -6,10 +6,12 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.nathanfallet.website.data.Profile
 import me.nathanfallet.website.domain.models.Contribution
+import me.nathanfallet.website.domain.models.Coordinate
 import me.nathanfallet.website.domain.models.Library
 import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.services.GitHubContributionsService
 import me.nathanfallet.website.domain.services.GitHubStatsService
+import me.nathanfallet.website.domain.services.PackageVersionService
 import me.nathanfallet.website.domain.services.ThumbnailService
 import me.nathanfallet.website.presentation.mappers.*
 import me.nathanfallet.website.presentation.views.*
@@ -19,6 +21,7 @@ data class WebsiteRoutesDependencies(
     val gitHubStatsService: GitHubStatsService,
     val gitHubContributionsService: GitHubContributionsService,
     val thumbnailService: ThumbnailService,
+    val packageVersionService: PackageVersionService,
 )
 
 /**
@@ -148,10 +151,28 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
             ?.let { gitHubContributionsService.pullRequests(it.repo) }
             .orEmpty()
 
+        // Only a library declares where it can be installed from.
+        val install = (entry as? Library)?.let { library ->
+            library.coordinates.map { coordinate ->
+                val version = when (coordinate) {
+                    is Coordinate.Maven -> packageVersionService.mavenVersion(coordinate.path)
+                    is Coordinate.GradlePlugin ->
+                        packageVersionService.mavenVersion(
+                            coordinate.id.replace('.', '/') + "/" + coordinate.id + ".gradle.plugin"
+                        )
+
+                    is Coordinate.SwiftPackage -> packageVersionService.latestTag(library.repo)
+                    is Coordinate.GitHubAction -> coordinate.version
+                    is Coordinate.NpmPackage -> null
+                }
+                coordinate.toInstallView(library.repo, version)
+            }
+        }.orEmpty()
+
         call.respond(
             FreeMarkerContent(
                 "entry.ftl",
-                mapOf("view" to entry.toEntryPageView(portfolio, stats, pullRequests))
+                mapOf("view" to entry.toEntryPageView(portfolio, stats, pullRequests, install))
             )
         )
     }

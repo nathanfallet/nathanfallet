@@ -34,6 +34,13 @@ library("kdriver") {
     stars = 107                                 // only shown if the API call fails
     tagline = "Browser automation for Kotlin."
     targets("JVM", "Android", "Native")
+    maven("dev.kdriver", "core")                // version resolved at runtime
+}
+
+library("apirequest") {
+    repo = "nathanfallet/apirequest"
+    maven("me.nathanfallet.apirequest", "apirequest")
+    swiftPackage(indexed = true)                // indexed = listed on Swift Package Index
 }
 
 contribution("ktorio/ktor", stars = 14495)      // name and description come from GitHub
@@ -64,6 +71,14 @@ archive("replica") {
 the upstream projects I contribute to. The reverse index — what runs on a given project — is derived
 from it, so a library or contribution page never repeats the relation. The two are kept apart in the
 views: writing a library and sending patches to one are not the same claim.
+
+A library can declare where it is published: `maven`, `gradlePlugin`, `swiftPackage`, `githubAction`
+or `npm`. Versions are never written by hand — they are read from `maven-metadata.xml` on Maven
+Central and from the git tags for Swift packages, then cached for 24 hours. Failures are cached too,
+so an unreachable registry hides the version for a while instead of being retried on every visit.
+Each coordinate also links to where the package can be browsed: klibs.io, the Gradle Plugin Portal,
+npm, or the Swift Package Index when `indexed = true` — not every Swift package is listed there, and
+linking to a "package not found" page would be worse than not linking.
 
 Videos declared with a `channel` are guest appearances and land in their own section; the others are
 mine. `about(...)` links a video to the projects it talks about, and the project page shows the

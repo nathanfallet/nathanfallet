@@ -2,6 +2,7 @@ package me.nathanfallet.website.domain.dsl
 
 import me.nathanfallet.website.domain.models.Archive
 import me.nathanfallet.website.domain.models.Contribution
+import me.nathanfallet.website.domain.models.Coordinate
 import me.nathanfallet.website.domain.models.Entry
 import me.nathanfallet.website.domain.models.Library
 import me.nathanfallet.website.domain.models.Link
@@ -116,14 +117,59 @@ class LibraryBuilder(id: String) : EntryBuilder(id) {
     var stars: Int = 0
 
     private val targets = mutableListOf<String>()
+    private val coordinates = mutableListOf<Coordinate>()
 
     fun targets(vararg names: String) {
         targets += names
     }
 
+    /**
+     * Published on Maven Central. The version is resolved at runtime.
+     */
+    fun maven(group: String, artifact: String) {
+        coordinates += Coordinate.Maven(group, artifact)
+    }
+
+    /**
+     * A Gradle plugin, by its plugin id.
+     */
+    fun gradlePlugin(id: String) {
+        coordinates += Coordinate.GradlePlugin(id)
+    }
+
+    /**
+     * A Swift package, added by URL. Defaults to this library's repository.
+     */
+    fun swiftPackage(indexed: Boolean = false, url: String? = null) {
+        // The URL is resolved in build(): `repo` may not be set yet when this
+        // is called, since the DSL does not impose an order.
+        coordinates += Coordinate.SwiftPackage(url ?: "", indexed)
+    }
+
+    /**
+     * A GitHub Action, used as `owner/repo@version`.
+     */
+    fun githubAction(repo: String, version: String) {
+        coordinates += Coordinate.GitHubAction(repo, version)
+    }
+
+    /**
+     * Published on npm.
+     */
+    fun npm(name: String) {
+        coordinates += Coordinate.NpmPackage(name)
+    }
+
     internal fun build(): Library {
         require(repo.isNotBlank()) { "Library '$id' is missing its repo" }
-        return Library(id, name, tagline, description, links + Link(LinkKind.GITHUB, "GitHub", "https://github.com/$repo"), status, aliases, repo, targets, stars)
+        val resolved = coordinates.map {
+            if (it is Coordinate.SwiftPackage && it.url.isEmpty()) {
+                it.copy(url = "https://github.com/$repo")
+            } else {
+                it
+            }
+        }
+        return Library(id, name, tagline, description, links + Link(LinkKind.GITHUB, "GitHub", "https://github.com/$repo"), status, aliases, repo, targets, stars, resolved)
     }
 }
 

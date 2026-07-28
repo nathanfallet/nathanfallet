@@ -62,6 +62,7 @@ val portfolio = portfolio {
     // MARK: - Libraries
 
     library("kdriver") {
+        maven("dev.kdriver", "core")
         name = "kdriver"
         tagline = "Blazing fast, coroutine-first, undetectable browser automation for Kotlin."
         repo = "cdpdriver/kdriver"
@@ -80,6 +81,7 @@ val portfolio = portfolio {
     }
 
     library("kourier") {
+        maven("dev.kourier", "amqp-client")
         name = "kourier"
         tagline = "Pure Kotlin AMQP 0.9.1 client for RabbitMQ. Coroutines, multiplatform, auto-reconnection, no Java client."
         repo = "kourier-amqp/kourier"
@@ -89,6 +91,7 @@ val portfolio = portfolio {
     }
 
     library("zodable") {
+        gradlePlugin("dev.zodable")
         name = "zodable"
         tagline = "Generate zod schemas from Kotlin data classes."
         repo = "zodable/zodable"
@@ -102,6 +105,7 @@ val portfolio = portfolio {
     }
 
     library("amplitude-kmp") {
+        maven("me.nathanfallet.amplitude", "analytics-kmp")
         name = "amplitude-kmp"
         tagline = "The official Kotlin Multiplatform SDK for Amplitude Analytics."
         repo = "nathanfallet/amplitude-kmp"
@@ -110,6 +114,7 @@ val portfolio = portfolio {
     }
 
     library("experiment-kmp") {
+        maven("me.nathanfallet.amplitude", "experiment-kmp-client")
         name = "experiment-kmp"
         tagline = "Kotlin Multiplatform SDK for Amplitude Experiment."
         repo = "nathanfallet/experiment-kmp"
@@ -118,6 +123,7 @@ val portfolio = portfolio {
     }
 
     library("ant-design-kmp") {
+        maven("digital.guimauve.antdesign", "ui")
         name = "ant-design-kmp"
         tagline = "Ant Design components for Compose Multiplatform."
         repo = "guimauvedigital/ant-design-kmp"
@@ -153,6 +159,8 @@ val portfolio = portfolio {
     }
 
     library("streamdeck-kotlin-sdk") {
+        maven("me.nathanfallet.streamdeck", "streamdeck-kotlin-sdk")
+        gradlePlugin("me.nathanfallet.streamdeck")
         name = "streamdeck-kotlin-sdk"
         tagline = "A Kotlin SDK to create Stream Deck plugins."
         repo = "nathanfallet/streamdeck-kotlin-sdk"
@@ -161,6 +169,7 @@ val portfolio = portfolio {
     }
 
     library("cloudflare-api-client") {
+        maven("me.nathanfallet.cloudflare", "cloudflare-api-client")
         name = "cloudflare-api-client"
         tagline = "Kotlin client for the Cloudflare API."
         repo = "nathanfallet/cloudflare-api-client"
@@ -169,6 +178,7 @@ val portfolio = portfolio {
     }
 
     library("customerio-api-client") {
+        maven("me.nathanfallet.customerio", "customerio-api-client")
         name = "customerio-api-client"
         tagline = "Kotlin client for the Customer.io server API."
         repo = "nathanfallet/customerio-api-client"
@@ -177,6 +187,7 @@ val portfolio = portfolio {
     }
 
     library("flareon") {
+        maven("me.nathanfallet.flareon", "core")
         name = "flareon"
         tagline = "A Firebase Admin SDK for Kotlin Multiplatform."
         repo = "nathanfallet/flareon"
@@ -185,6 +196,7 @@ val portfolio = portfolio {
     }
 
     library("pkg") {
+        gradlePlugin("digital.guimauve.pkg")
         name = "pkg"
         tagline = "An open source Maven, npm and PyPI package manager."
         repo = "nathanfallet/pkg"
@@ -193,6 +205,7 @@ val portfolio = portfolio {
     }
 
     library("webhooks") {
+        maven("digital.guimauve.webhooks", "discord")
         name = "webhooks"
         tagline = "Kotlin clients to push events to Discord, Slack and friends."
         repo = "guimauvedigital/webhooks"
@@ -209,6 +222,7 @@ val portfolio = portfolio {
     }
 
     library("generate-sitemap") {
+        githubAction("guimauvedigital/generate-sitemap", "v1")
         name = "generate-sitemap"
         tagline = "A GitHub Action to generate a sitemap for GitHub Pages websites."
         repo = "nathanfallet/generate-sitemap"
@@ -217,6 +231,7 @@ val portfolio = portfolio {
     }
 
     library("kotlinds") {
+        maven("dev.kotlinds", "nds-all")
         name = "kotlinds"
         tagline = "Kotlin Multiplatform utilities to work with Nintendo DS ROM files."
         repo = "kotlinds/kotlinds"
@@ -231,6 +246,8 @@ val portfolio = portfolio {
     }
 
     library("apirequest") {
+        maven("me.nathanfallet.apirequest", "apirequest")
+        swiftPackage(indexed = true)
         name = "APIRequest"
         tagline = "A Swift package and Android library to talk to a REST API."
         repo = "nathanfallet/apirequest"
@@ -240,6 +257,8 @@ val portfolio = portfolio {
     }
 
     library("unlockpremium") {
+        maven("me.nathanfallet.unlockpremium", "unlockpremium")
+        swiftPackage()
         name = "UnlockPremium"
         tagline = "A ready-made \"unlock premium\" screen for iOS and Android apps."
         repo = "nathanfallet/unlockpremium"
@@ -249,6 +268,8 @@ val portfolio = portfolio {
     }
 
     library("guimauveui") {
+        maven("software.guimauve", "guimauveui")
+        swiftPackage()
         name = "GuimauveUI"
         tagline = "Reusable UI components for Compose and SwiftUI."
         repo = "nathanfallet/guimauveui"
@@ -258,6 +279,7 @@ val portfolio = portfolio {
     }
 
     library("donateviewcontroller") {
+        swiftPackage(indexed = true)
         name = "DonateViewController"
         tagline = "A view controller to collect donations inside an iOS app."
         repo = "groupeminaste/DonateViewController"
@@ -267,6 +289,7 @@ val portfolio = portfolio {
     }
 
     library("makth") {
+        maven("dev.makth", "core")
         name = "makth"
         tagline = "A Kotlin library for algebra."
         repo = "nathanfallet/makth"
@@ -276,6 +299,7 @@ val portfolio = portfolio {
     }
 
     library("kaccelero") {
+        maven("dev.kaccelero", "core")
         name = "kaccelero"
         tagline = "An all-in-one toolkit for mobile and web development in Kotlin and Swift."
         repo = "nathanfallet/kaccelero"

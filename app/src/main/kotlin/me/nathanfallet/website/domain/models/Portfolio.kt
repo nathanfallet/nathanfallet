@@ -107,6 +107,10 @@ data class Library(
      * from the API always wins over this one.
      */
     val stars: Int,
+    /**
+     * Where the library can be installed from, if it is published anywhere.
+     */
+    val coordinates: List<Coordinate>,
 ) : Entry
 
 /**

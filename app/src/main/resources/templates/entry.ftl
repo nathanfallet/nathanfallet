@@ -16,6 +16,23 @@
             <div class="prose">
                 <#if view.description??>${view.description?no_esc}</#if>
 
+                <#if view.install?size gt 0>
+                <h2>Install</h2>
+                <div class="install">
+                    <#list view.install as target>
+                    <div class="install-item">
+                        <div class="install-head">
+                            <span class="install-label">${target.label}</span>
+                            <#if target.url??>
+                            <a href="${target.url}" rel="noopener">${target.urlLabel}</a>
+                            </#if>
+                        </div>
+                        <pre><code>${target.snippet}</code></pre>
+                    </div>
+                    </#list>
+                </div>
+                </#if>
+
                 <#if view.pullRequests?size gt 0>
                 <h2>What I shipped there</h2>
                 <p>My merged pull requests on this repository, straight from the GitHub API.</p>

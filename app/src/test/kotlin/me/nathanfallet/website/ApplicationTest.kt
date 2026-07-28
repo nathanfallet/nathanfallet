@@ -12,6 +12,7 @@ import me.nathanfallet.website.domain.models.Library
 import me.nathanfallet.website.domain.models.Portfolio
 import me.nathanfallet.website.domain.services.GitHubContributionsService
 import me.nathanfallet.website.domain.services.GitHubStatsService
+import me.nathanfallet.website.domain.services.PackageVersionService
 import me.nathanfallet.website.domain.services.PullRequest
 import me.nathanfallet.website.domain.services.ThumbnailService
 import me.nathanfallet.website.domain.services.RepositoryStats
@@ -24,6 +25,7 @@ import org.koin.ktor.plugin.Koin
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -52,6 +54,14 @@ private class FakeThumbnailService : ThumbnailService {
 }
 
 /**
+ * Answers a fixed version, so the install snippets can be checked offline.
+ */
+private class FakePackageVersionService : PackageVersionService {
+    override suspend fun mavenVersion(path: String) = "1.2.3"
+    override suspend fun latestTag(repo: String) = "4.5.6"
+}
+
+/**
  * Stands in for a GitHub API that cannot be reached at all.
  */
 private class OfflineGitHubStatsService : GitHubStatsService {
@@ -66,7 +76,8 @@ private fun Application.testModule(statsService: GitHubStatsService = FakeGitHub
                 single<GitHubStatsService> { statsService }
                 single<GitHubContributionsService> { FakeGitHubContributionsService() }
                 single<ThumbnailService> { FakeThumbnailService() }
-                single { WebsiteRoutesDependencies(get(), get(), get(), get()) }
+                single<PackageVersionService> { FakePackageVersionService() }
+                single { WebsiteRoutesDependencies(get(), get(), get(), get(), get()) }
             }
         )
     }
@@ -177,6 +188,27 @@ class ApplicationTest {
         assertTrue(portfolio.ownVideos.all { it.channel == null })
         val body = client.get("/videos").bodyAsText()
         assertTrue(body.contains("Guest appearances"), "the appearances section is missing")
+    }
+
+    @Test
+    fun aPublishedLibraryShowsHowToInstallIt() = testApplication {
+        application { testModule() }
+        val body = client.get("/projects/kdriver").bodyAsText()
+        assertTrue(body.contains("dev.kdriver:core:1.2.3"), "the Gradle snippet is missing")
+        assertTrue(body.contains("klibs.io/project/cdpdriver/kdriver"), "the klibs.io link is missing")
+    }
+
+    @Test
+    fun swiftPackagesOnlyLinkToTheIndexWhenTheyAreListed() = testApplication {
+        application { testModule() }
+        assertTrue(
+            client.get("/projects/apirequest").bodyAsText().contains("swiftpackageindex.com"),
+            "APIRequest is listed and should link to the index",
+        )
+        assertFalse(
+            client.get("/projects/unlockpremium").bodyAsText().contains("swiftpackageindex.com"),
+            "UnlockPremium is not listed and must not link to a missing page",
+        )
     }
 
     @Test
