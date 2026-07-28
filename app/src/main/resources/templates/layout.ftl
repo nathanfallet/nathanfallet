@@ -40,6 +40,7 @@
             <a href="/#open-source">Open source</a>
             <a href="/#contributions">Contributions</a>
             <a href="/videos">Videos</a>
+            <a href="/#writing">Writing</a>
             <a href="/archives">Archives</a>
         </nav>
         <a class="btn btn-primary" href="mailto:contact@nathanfallet.me">Get in touch</a>

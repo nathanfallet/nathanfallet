@@ -28,6 +28,7 @@ import me.nathanfallet.website.presentation.views.MetaView
 import me.nathanfallet.website.presentation.views.ProductView
 import me.nathanfallet.website.presentation.views.LandedView
 import me.nathanfallet.website.presentation.views.RelatedGroupView
+import me.nathanfallet.website.presentation.views.WritingView
 import me.nathanfallet.website.presentation.views.VideoPageView
 import me.nathanfallet.website.presentation.views.VideoView
 
@@ -95,6 +96,15 @@ fun Video.toVideoPageView(portfolio: Portfolio) = VideoPageView(
     thumbnail = "$path/thumbnail.jpg",
     watchUrl = watchUrl,
     publishedAt = publishedAt,
+    about = about.mapNotNull(portfolio::entry).map { it.toRefView() },
+)
+
+fun Article.toWritingView(portfolio: Portfolio) = WritingView(
+    title = title,
+    url = url,
+    publisher = publisher,
+    publishedAt = publishedAt,
+    parts = parts,
     about = about.mapNotNull(portfolio::entry).map { it.toRefView() },
 )
 

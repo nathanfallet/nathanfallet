@@ -73,7 +73,8 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         archives = portfolio.archives.map { it.toArchiveView() },
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
-                        articles = portfolio.articles.map { it.toArticleView() },
+                        articles = portfolio.mentions.map { it.toArticleView() },
+                        writings = portfolio.writings.map { it.toWritingView(portfolio) },
                         openSourceProjects = allLibraries.size + contributions.size,
                         totalStars = allLibraries.sumOf { it.stars } + maintained.sumOf { it.stars },
                         videoCount = portfolio.videos.size,
@@ -116,7 +117,8 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         ),
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
-                        articles = portfolio.articles.map { it.toArticleView() },
+                        articles = portfolio.mentions.map { it.toArticleView() },
+                        writings = portfolio.writings.map { it.toWritingView(portfolio) },
                     )
                 )
             )

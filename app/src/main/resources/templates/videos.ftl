@@ -17,6 +17,35 @@
     </div>
 </section>
 
+<#if view.writings?size gt 0>
+<section class="section" id="writing">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Writing</span>
+            <h2>Things I wrote down</h2>
+            <p>Posts on Medium and dev.to, mostly about the Kotlin decisions behind the libraries
+                above.</p>
+        </div>
+        <div class="writings">
+            <#list view.writings as post>
+            <a class="writing" href="${post.url}" rel="noopener">
+                <span class="writing-title">
+                    ${post.title}
+                    <#if post.parts??><span class="tag">${post.parts} parts</span></#if>
+                </span>
+                <span class="writing-about">
+                    <#list post.about as entry>
+                    <span class="tag tag-powers">${entry.name}</span>
+                    </#list>
+                </span>
+                <span class="writing-meta">${post.publisher} · ${post.publishedAt}</span>
+            </a>
+            </#list>
+        </div>
+    </div>
+</section>
+</#if>
+
 <#if view.appearances?size gt 0>
 <section class="section">
     <div class="wrap">

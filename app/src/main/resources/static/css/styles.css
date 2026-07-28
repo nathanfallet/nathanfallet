@@ -552,6 +552,50 @@ code {
     color: var(--fg-muted);
 }
 
+.writings {
+    display: grid;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.writing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.5rem 1.25rem;
+    align-items: baseline;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-raised);
+    transition: background 0.15s;
+}
+
+.writing:last-child {
+    border-bottom: 0;
+}
+
+.writing:hover {
+    background: var(--bg-soft);
+}
+
+.writing-title {
+    font-size: 0.95rem;
+    font-weight: 550;
+}
+
+.writing-about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.writing-meta {
+    font-size: 0.82rem;
+    color: var(--fg-faint);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
 /* Archives */
 
 .archives {
@@ -1003,6 +1047,10 @@ code {
 
     .contribution {
         grid-template-columns: 1fr auto;
+    }
+
+    .writing {
+        grid-template-columns: 1fr;
     }
 
     .contribution .desc {

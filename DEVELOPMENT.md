@@ -80,6 +80,11 @@ Each coordinate also links to where the package can be browsed: klibs.io, the Gr
 npm, or the Swift Package Index when `indexed = true` — not every Swift package is listed there, and
 linking to a "package not found" page would be worse than not linking.
 
+`writing(...)` records something I wrote elsewhere — Medium, dev.to — with `about(...)` to link it
+to the projects it discusses. A tutorial split across several posts is declared once, pointing at
+the series URL, with `parts = 6`: six near-identical rows would bury everything else. It is kept
+apart from `article(...)`: writing something and being written about are two different claims.
+
 `article(...)` records something somebody else wrote about me. Articles have no page of their own —
 the card links straight to the publisher — and they sit next to the guest appearances. An `image` is
 proxied through `/articles/{id}/thumbnail.jpg` like the video thumbnails: everything is downscaled

@@ -558,6 +558,53 @@ val portfolio = portfolio {
     // The links to projects come from the video descriptions and, where those
     // were silent, from the transcripts.
 
+    // MARK: - Writing
+
+    writing(
+        id = "kotlin-multiplatform-libraries",
+        title = "Why We Don't Need Libraries in Kotlin Multiplatform",
+        url = "https://nathanfallet.medium.com/why-we-dont-need-libraries-in-kotlin-multiplatform-298053c79a77",
+        publisher = "Medium",
+        publishedAt = "2025-11-06",
+    )
+
+    writing(
+        id = "python-to-kotlin",
+        title = "From Python to Kotlin: Why We Rewrote Our Scraping Framework in Kotlin",
+        url = "https://nathanfallet.medium.com/from-python-to-kotlin-why-we-rewrote-our-scraping-framework-in-kotlin-aebfd69d5838",
+        publisher = "Medium",
+        publishedAt = "2025-09-22",
+        about = listOf("kdriver", "zodable"),
+    )
+
+    writing(
+        id = "i-changed-the-way-i-study",
+        title = "I changed the way I study",
+        url = "https://nathanfallet.medium.com/i-changed-the-way-i-study-317a15aff10c",
+        publisher = "Medium",
+        publishedAt = "2022-07-01",
+        about = listOf("flashup"),
+    )
+
+    writing(
+        id = "rabbitmq-runblocking",
+        title = "Stop wrapping your RabbitMQ code in runBlocking",
+        url = "https://dev.to/nathanfallet/stop-wrapping-your-rabbitmq-code-in-runblocking-18c2",
+        publisher = "dev.to",
+        publishedAt = "2025-12-01",
+        about = listOf("kourier"),
+    )
+
+    writing(
+        id = "ktor-native-worker-tutorial",
+        title = "Ktor Native Worker Tutorial",
+        url = "https://dev.to/nathanfallet/series/34643",
+        publisher = "dev.to",
+        publishedAt = "2025-12-21",
+        parts = 6,
+        about = listOf("kourier"),
+    )
+
     // MARK: - Written about me
 
     article(

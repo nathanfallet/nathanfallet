@@ -201,8 +201,9 @@ data class Video(
 }
 
 /**
- * Something somebody else wrote about me. Not hosted here, so it has no page of
- * its own: the row links straight out.
+ * An article: either something I wrote elsewhere, or something somebody else
+ * wrote about me. Not hosted here, so it has no page of its own: the row links
+ * straight out.
  */
 data class Article(
     val id: String,
@@ -221,6 +222,20 @@ data class Article(
      * The illustration to show, served through this website rather than hotlinked.
      */
     val image: String?,
+    /**
+     * True when I wrote it. Writing something and being written about are two
+     * different claims, so they never share a section.
+     */
+    val authored: Boolean,
+    /**
+     * Identifiers of the entries this article talks about.
+     */
+    val about: List<String>,
+    /**
+     * How many posts this row stands for, when a series is collapsed into a
+     * single entry. Null for a standalone article.
+     */
+    val parts: Int?,
 ) {
     val thumbnailPath: String get() = "/articles/$id/thumbnail.jpg"
 }
@@ -284,6 +299,18 @@ data class Portfolio(
      * Finds an article by its identifier.
      */
     fun article(id: String): Article? = articles.firstOrNull { it.id == id }
+
+    /**
+     * What I wrote elsewhere, most recent first.
+     */
+    val writings: List<Article>
+        get() = articles.filter { it.authored }.sortedByDescending(Article::publishedAt)
+
+    /**
+     * What was written about me, most recent first.
+     */
+    val mentions: List<Article>
+        get() = articles.filterNot { it.authored }.sortedByDescending(Article::publishedAt)
 
     /**
      * The videos talking about an entry, most recent first.

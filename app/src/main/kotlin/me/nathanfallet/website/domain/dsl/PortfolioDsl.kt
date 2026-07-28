@@ -276,7 +276,22 @@ class PortfolioBuilder {
         summary: String? = null,
         image: String? = null,
     ) {
-        articles += Article(id, title, url, publisher, publishedAt, summary, image)
+        articles += Article(id, title, url, publisher, publishedAt, summary, image, false, emptyList(), null)
+    }
+
+    /**
+     * Something I wrote on somebody else's platform.
+     */
+    fun writing(
+        id: String,
+        title: String,
+        url: String,
+        publisher: String,
+        publishedAt: String,
+        parts: Int? = null,
+        about: List<String> = emptyList(),
+    ) {
+        articles += Article(id, title, url, publisher, publishedAt, null, null, true, about, parts)
     }
 
     internal fun build(): Portfolio {
@@ -298,6 +313,11 @@ class PortfolioBuilder {
         val clashing = (products + resolved + archives).flatMap(Entry::aliases).filter { it in ids }
         require(clashing.isEmpty()) { "Aliases clashing with real identifiers: ${clashing.joinToString()}" }
 
+        articles.forEach { article ->
+            article.about.forEach { id ->
+                require(id in ids) { "Article '${article.id}' is about unknown entry '$id'" }
+            }
+        }
         videos.forEach { video ->
             video.about.forEach { id ->
                 require(id in ids) { "Video '${video.id}' is about unknown entry '$id'" }
