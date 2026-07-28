@@ -216,19 +216,17 @@ class PortfolioBuilder {
     }
 
     internal fun build(): Portfolio {
-        val known = libraries.map(Library::id).toSet()
+        // A dependency can be one of my libraries, or an upstream project I
+        // contributed to and that we ended up running on.
+        val known = (libraries.map(Library::id) + contributions.map(Contribution::id)).toSet()
         val powered: List<Powered> = products + archives
         powered.forEach { entry ->
             entry.poweredBy.forEach { id ->
-                require(id in known) { "'${entry.id}' is powered by unknown library '$id'" }
+                require(id in known) { "'${entry.id}' is powered by unknown project '$id'" }
             }
         }
 
-        // The reverse index is derived, so the DSL only ever declares the link once.
-        val powers = powered.flatMap { entry -> entry.poweredBy.map { it to entry.id } }
-            .groupBy({ it.first }, { it.second })
-        val resolved = libraries.map { it.copy(powers = powers[it.id].orEmpty()) }
-
+        val resolved = libraries
         val ids = (products + resolved + contributions + archives).map(Entry::id)
         val duplicates = ids.groupBy { it }.filterValues { it.size > 1 }.keys
         require(duplicates.isEmpty()) { "Duplicate entry identifiers: ${duplicates.joinToString()}" }

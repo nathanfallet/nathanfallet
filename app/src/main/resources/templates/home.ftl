@@ -13,18 +13,18 @@
         </div>
         <div class="stats">
             <div class="stat">
-                <div class="value">${view.libraries?size}</div>
-                <div class="label">Libraries maintained</div>
+                <div class="value">${view.openSourceProjects}</div>
+                <div class="label">Open source projects</div>
             </div>
             <#if (view.totalStars > 0)>
             <div class="stat">
                 <div class="value">${view.totalStars}</div>
-                <div class="label">Stars on my own repos</div>
+                <div class="label">Stars on what I maintain</div>
             </div>
             </#if>
             <div class="stat">
-                <div class="value">${view.contributions?size}</div>
-                <div class="label">Projects contributed to</div>
+                <div class="value">${view.videoCount}</div>
+                <div class="label">Videos &amp; podcasts</div>
             </div>
             <div class="stat">
                 <div class="value">15</div>
@@ -111,7 +111,12 @@
                     ${contribution.repo}
                     <#if contribution.maintainer><span class="tag tag-maintainer">Maintainer</span></#if>
                 </span>
-                <span class="desc">${contribution.tagline}</span>
+                <span class="desc">
+                    ${contribution.tagline}
+                    <#list contribution.powers as project>
+                    <span class="tag tag-powers">Powers ${project.name}</span>
+                    </#list>
+                </span>
                 <#if (contribution.stars > 0)>
                 <span class="stars">★ ${contribution.stars}</span>
                 </#if>

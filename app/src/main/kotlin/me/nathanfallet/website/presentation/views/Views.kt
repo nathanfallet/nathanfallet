@@ -48,6 +48,7 @@ data class ContributionView(
     val url: String,
     val stars: Int,
     val maintainer: Boolean,
+    val powers: List<EntryRefView>,
 )
 
 data class ArchiveView(
@@ -125,7 +126,20 @@ data class HomeView(
     val archives: List<ArchiveView>,
     val videos: List<VideoView>,
     val appearances: List<VideoView>,
+    /**
+     * Every open source project I have worked on: mine, the ones I co-maintain
+     * and the ones I only contributed to.
+     */
+    val openSourceProjects: Int,
+    /**
+     * Stars across the ones I maintain only. Counting the stars of a project I
+     * merely sent a patch to would be dishonest.
+     */
     val totalStars: Int,
+    /**
+     * Everything on the channel plus the guest appearances.
+     */
+    val videoCount: Int,
 )
 
 data class EntryPageView(

@@ -201,7 +201,7 @@ class PortfolioTest {
     @Test
     fun theReverseIndexIsBuiltFromTheEntries() {
         val kdriver = portfolio.libraries.first { it.id == "kdriver" }
-        assertTrue(kdriver.powers.contains("controlresell"))
+        assertTrue(portfolio.poweredBy(kdriver).any { it.id == "controlresell" })
         assertNotNull(portfolio.entry("controlresell"))
     }
 
@@ -211,7 +211,17 @@ class PortfolioTest {
             library("lib") { repo = "owner/lib" }
             archive("old") { poweredBy("lib") }
         }
-        assertEquals(listOf("old"), built.libraries.first().powers)
+        val lib = built.libraries.first()
+        assertEquals(listOf("old"), built.poweredBy(lib).map { it.id })
+    }
+
+    @Test
+    fun aProjectCanRunOnAnUpstreamProjectIContributedTo() {
+        val ktor = portfolio.contributions.first { it.repo == "ktorio/ktor" }
+        assertTrue(
+            portfolio.poweredBy(ktor).any { it.id == "controlresell" },
+            "ControlResell should be listed as running on Ktor",
+        )
     }
 
     @Test

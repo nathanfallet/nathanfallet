@@ -60,8 +60,10 @@ archive("replica") {
 }
 ```
 
-`poweredBy` is declared once, on the product or the archive. The reverse index — which entries a
-library powers — is derived from it, so a library page never has to repeat the relation.
+`poweredBy` is declared once, on the product or the archive, and accepts both my own libraries and
+the upstream projects I contribute to. The reverse index — what runs on a given project — is derived
+from it, so a library or contribution page never repeats the relation. The two are kept apart in the
+views: writing a library and sending patches to one are not the same claim.
 
 Videos declared with a `channel` are guest appearances and land in their own section; the others are
 mine. `about(...)` links a video to the projects it talks about, and the project page shows the

@@ -45,7 +45,10 @@ val portfolio = portfolio {
         by = "Guimauve Digital"
         website("https://controlresell.com")
         appStore("6447619941")
-        poweredBy("kdriver", "kourier", "zodable")
+        poweredBy(
+            "kdriver", "kourier", "zodable", "pkg", "flareon", "webhooks",
+            "stripe-to-amplitude", "ktor", "koog",
+        )
         description = """
             <p>ControlResell connects to the marketplaces resellers sell on — Vinted, eBay, Shopify,
             Etsy, Vestiaire Collective — and takes over the repetitive half of the job: publishing,
@@ -189,6 +192,14 @@ val portfolio = portfolio {
         targets("JVM")
     }
 
+    library("webhooks") {
+        name = "webhooks"
+        tagline = "Kotlin clients to push events to Discord, Slack and friends."
+        repo = "guimauvedigital/webhooks"
+        stars = 2
+        targets("Multiplatform")
+    }
+
     library("stripe-to-amplitude") {
         name = "stripe-to-amplitude"
         tagline = "Load all your Stripe data, past and live, into Amplitude with a consistent event format."
@@ -303,7 +314,7 @@ val portfolio = portfolio {
     // MARK: - Archives
 
     archive("flashup") {
-        poweredBy("kaccelero", "makth", "guimauveui")
+        poweredBy("ktor", "kaccelero", "makth", "guimauveui")
         name = "FlashUp"
         tagline = "Create cards to learn your formulas and theorems using LaTeX."
         year = "2022"
@@ -316,7 +327,7 @@ val portfolio = portfolio {
     }
 
     archive("iapush") {
-        poweredBy("kaccelero", "guimauveui")
+        poweredBy("ktor", "kaccelero", "guimauveui")
         name = "iAPush"
         tagline = "Get notified of your App Store and Play Store sales in realtime."
         year = "2025"
@@ -329,7 +340,7 @@ val portfolio = portfolio {
     }
 
     archive("deltaalgorithms") {
-        poweredBy("makth", "apirequest", "unlockpremium")
+        poweredBy("sqlite-swift", "makth", "apirequest", "unlockpremium")
         name = "Delta: Algorithms"
         tagline = "A math app for students: discover and create algorithms with a natural language."
         year = "2024"
@@ -350,7 +361,7 @@ val portfolio = portfolio {
     }
 
     archive("extopy") {
-        poweredBy("kaccelero")
+        poweredBy("ktor", "kaccelero")
         name = "Extopy"
         tagline = "A non-profit social network that cares about your privacy."
         year = "2025"
@@ -378,7 +389,7 @@ val portfolio = portfolio {
     }
 
     archive("converty") {
-        poweredBy("kaccelero", "guimauveui", "unlockpremium")
+        poweredBy("sqlite-swift", "kaccelero", "guimauveui", "unlockpremium")
         name = "BaseConverter: Converty"
         tagline = "The fast and easy way to convert numbers between bases."
         year = "2024"
@@ -387,7 +398,7 @@ val portfolio = portfolio {
     }
 
     archive("ringify") {
-        poweredBy("kaccelero", "guimauveui", "apirequest")
+        poweredBy("ktor", "kaccelero", "guimauveui", "apirequest")
         name = "Ringify"
         tagline = "Create teams and compete with your friends."
         year = "2024"
@@ -396,7 +407,7 @@ val portfolio = portfolio {
     }
 
     archive("suitebde") {
-        poweredBy("kaccelero", "guimauveui")
+        poweredBy("ktor", "kaccelero", "guimauveui")
         name = "Suite BDE"
         tagline = "An all-in-one tool for French student unions."
         year = "2024"

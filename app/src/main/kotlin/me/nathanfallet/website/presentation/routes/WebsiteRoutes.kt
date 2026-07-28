@@ -35,8 +35,13 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
             .map { it.toLibraryView(portfolio, stats) }
             .sortedWith(compareBy({ it.sunset }, { -it.stars }))
         val contributions = portfolio.contributions
-            .map { it.toContributionView(stats) }
+            .map { it.toContributionView(portfolio, stats) }
             .sortedByDescending { it.stars }
+
+        // Co-maintaining someone else's library counts as maintaining it, so its
+        // stars belong in the total. It is then not counted again as a mere
+        // contribution.
+        val maintained = contributions.filter { it.maintainer }
 
         call.respond(
             FreeMarkerContent(
@@ -61,7 +66,9 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         archives = portfolio.archives.map { it.toArchiveView() },
                         videos = portfolio.ownVideos.map { it.toVideoView(portfolio) },
                         appearances = portfolio.appearances.map { it.toVideoView(portfolio) },
-                        totalStars = libraries.sumOf { it.stars },
+                        openSourceProjects = libraries.size + contributions.size,
+                        totalStars = libraries.sumOf { it.stars } + maintained.sumOf { it.stars },
+                        videoCount = portfolio.videos.size,
                     )
                 )
             )

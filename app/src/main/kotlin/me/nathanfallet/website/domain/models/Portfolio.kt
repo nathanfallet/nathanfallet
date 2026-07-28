@@ -107,11 +107,6 @@ data class Library(
      * from the API always wins over this one.
      */
     val stars: Int,
-    /**
-     * Identifiers of the entries running on this library. Computed from
-     * [Powered.poweredBy], never declared by hand.
-     */
-    val powers: List<String> = emptyList(),
 ) : Entry
 
 /**
@@ -257,14 +252,30 @@ data class Portfolio(
         videosByEntry[entry.id].orEmpty().sortedByDescending(Video::publishedAt)
 
     /**
-     * Resolves the libraries an entry runs on.
+     * The libraries of mine an entry runs on.
      */
     fun librariesOf(entry: Powered): List<Library> =
         entry.poweredBy.mapNotNull { id -> libraries.firstOrNull { it.id == id } }
 
     /**
-     * Resolves the entries a library powers, products and archives alike.
+     * The upstream projects an entry runs on, among those I work on. Kept apart
+     * from [librariesOf]: writing a library and sending patches to one are not
+     * the same claim.
      */
-    fun poweredBy(library: Library): List<Entry> =
-        library.powers.mapNotNull(::entry)
+    fun contributionsOf(entry: Powered): List<Contribution> =
+        entry.poweredBy.mapNotNull { id -> contributions.firstOrNull { it.id == id } }
+
+    /**
+     * What runs on a given library or contribution. Derived from the
+     * [Powered.poweredBy] declared on the products and archives, so the
+     * relation is written once and read from both ends.
+     */
+    private val poweredIndex: Map<String, List<Entry>> =
+        (products + archives).flatMap { powered -> powered.poweredBy.map { it to powered } }
+            .groupBy({ it.first }, { it.second as Entry })
+
+    /**
+     * Resolves the entries running on a library or a contribution.
+     */
+    fun poweredBy(entry: Entry): List<Entry> = poweredIndex[entry.id].orEmpty()
 }

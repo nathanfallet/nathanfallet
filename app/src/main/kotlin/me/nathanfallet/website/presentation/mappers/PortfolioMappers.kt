@@ -57,7 +57,7 @@ fun Library.toLibraryView(portfolio: Portfolio, stats: Map<String, RepositorySta
     powers = portfolio.poweredBy(this).map { it.toRefView() },
 )
 
-fun Contribution.toContributionView(stats: Map<String, RepositoryStats>) = ContributionView(
+fun Contribution.toContributionView(portfolio: Portfolio, stats: Map<String, RepositoryStats>) = ContributionView(
     name = name,
     // The description on GitHub is always fresher than anything hardcoded here.
     tagline = stats[repo]?.description ?: tagline,
@@ -65,6 +65,7 @@ fun Contribution.toContributionView(stats: Map<String, RepositoryStats>) = Contr
     url = path(),
     stars = stats[repo]?.stars ?: stars,
     maintainer = maintainer,
+    powers = portfolio.poweredBy(this).map { it.toRefView() },
 )
 
 fun Video.toVideoView(portfolio: Portfolio) = VideoView(
@@ -134,6 +135,9 @@ fun Entry.toEntryPageView(
 
         is Contribution -> {
             kind = if (maintainer) "Maintainer" else "Contributor"
+            portfolio.poweredBy(this).takeIf { it.isNotEmpty() }?.let {
+                related += RelatedGroupView("Powers", it.map(Entry::toRefView))
+            }
             stats[repo]?.let { repository ->
                 meta += MetaView("Stars", repository.stars.toString())
                 repository.language?.let { meta += MetaView("Language", it) }
@@ -147,10 +151,13 @@ fun Entry.toEntryPageView(
         }
     }
 
-    // Products and archives alike can run on the libraries.
+    // Products and archives alike run on things, mine and other people's.
     if (this is Powered) {
         portfolio.librariesOf(this).takeIf { it.isNotEmpty() }?.let {
             related += RelatedGroupView("Powered by my open source", it.map(Entry::toRefView))
+        }
+        portfolio.contributionsOf(this).takeIf { it.isNotEmpty() }?.let {
+            related += RelatedGroupView("Built on projects I work on", it.map(Entry::toRefView))
         }
     }
 
