@@ -475,6 +475,42 @@ code {
     background: var(--border);
 }
 
+.invite {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    margin: 1rem 0 0;
+    padding: 1.1rem 1.3rem;
+    border: 1px dashed var(--border-strong);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+}
+
+.invite p {
+    margin: 0;
+    max-width: 62ch;
+}
+
+.invite .btn {
+    flex-shrink: 0;
+    /* It is a button, not a link inside a sentence. */
+    text-decoration: none;
+    color: inherit;
+}
+
+.invite .btn:hover {
+    color: var(--accent);
+}
+
+.invite a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 /* Contributions */
 
 .contributions {

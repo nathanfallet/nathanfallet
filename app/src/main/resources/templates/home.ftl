@@ -117,6 +117,11 @@
             </#list>
         </div>
         </#if>
+
+        <div class="invite">
+            <p>${view.openSourceInvite?no_esc}</p>
+            <a class="btn" href="https://github.com/nathanfallet" rel="noopener">Follow on GitHub</a>
+        </div>
     </div>
 </section>
 

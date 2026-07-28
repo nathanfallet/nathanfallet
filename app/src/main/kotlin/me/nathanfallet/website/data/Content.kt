@@ -21,6 +21,11 @@ object Profile {
         products it sells on libraries I write and release in the open.
     """.trimIndent()
 
+    val openSourceInvite = """
+        Something here you could use? It is all open source: take it, open an issue, send a
+        pull request.
+    """.trimIndent()
+
     val socials = listOf(
         "GitHub" to "https://github.com/nathanfallet",
         "LinkedIn" to "https://www.linkedin.com/in/nathanfallet/",

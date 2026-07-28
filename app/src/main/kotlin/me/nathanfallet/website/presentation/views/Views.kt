@@ -149,6 +149,7 @@ data class HomeView(
     val name: String,
     val role: String,
     val intro: String,
+    val openSourceInvite: String,
     val email: String,
     val location: String,
     val socials: List<LinkView>,

@@ -62,6 +62,7 @@ fun Route.websiteRoutes(dependencies: WebsiteRoutesDependencies) = with(dependen
                         name = Profile.NAME,
                         role = Profile.ROLE,
                         intro = Profile.intro,
+                        openSourceInvite = Profile.openSourceInvite,
                         email = Profile.EMAIL,
                         location = Profile.LOCATION,
                         socials = Profile.socials.map { LinkView("WEBSITE", it.first, it.second) },
