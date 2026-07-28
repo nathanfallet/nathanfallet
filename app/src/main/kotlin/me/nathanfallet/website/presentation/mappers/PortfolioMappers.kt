@@ -236,7 +236,9 @@ fun Entry.toEntryPageView(
         links = links.map(Link::toLinkView),
         meta = meta,
         related = related,
-        landed = landed.map { LandedView(it.reference, it.title, it.url, it.date) },
+        landed = landed.map {
+            LandedView(it.reference, it.title, it.url, it.date, it.via?.label, it.via?.url)
+        },
         videos = videos,
         install = install,
     )

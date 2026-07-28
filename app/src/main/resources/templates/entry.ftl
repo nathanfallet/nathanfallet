@@ -39,12 +39,12 @@
                 <ol class="pull-requests">
                     <#list view.landed as item>
                     <li>
-                        <a href="${item.url}" rel="noopener">
-                            <span class="pr-title">${item.title}</span>
+                        <span class="pr-row">
+                            <a class="pr-title" href="${item.url}" rel="noopener">${item.title}</a>
                             <span class="pr-meta">
-                                ${item.reference}<#if item.date??> · ${item.date}</#if>
+                                ${item.reference}<#if item.viaLabel??> · via <a href="${item.viaUrl}" rel="noopener">${item.viaLabel}</a></#if><#if item.date??> · ${item.date}</#if>
                             </span>
-                        </a>
+                        </span>
                     </li>
                     </#list>
                 </ol>

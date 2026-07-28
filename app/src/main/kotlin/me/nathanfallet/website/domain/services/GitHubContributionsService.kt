@@ -16,7 +16,14 @@ data class Landed(
      * ISO date, or null when GitHub does not report one.
      */
     val date: String?,
-)
+    /**
+     * The pull request that carried this commit, when it was not mine. Null for
+     * a pull request I authored myself.
+     */
+    val via: Reference? = null,
+) {
+    data class Reference(val label: String, val url: String)
+}
 
 /**
  * Lists what I actually shipped to someone else's repository.

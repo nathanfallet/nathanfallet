@@ -44,6 +44,12 @@ private data class CommitDetails(val message: String, val author: CommitAuthor? 
 @Serializable
 private data class CommitAuthor(val date: String? = null)
 
+@Serializable
+private data class AssociatedPullRequest(
+    val number: Int,
+    @SerialName("html_url") val htmlUrl: String,
+)
+
 private data class CacheEntry(val landed: List<Landed>, val at: Instant)
 
 /**
@@ -61,6 +67,7 @@ class GitHubContributionsServiceImpl(
     private val ttl: Duration = 24.hours,
     private val retryDelay: Duration = 30.minutes,
     private val limit: Int = 20,
+    private val carrierLookups: Int = 10,
 ) : GitHubContributionsService {
 
     private val logger = LoggerFactory.getLogger(GitHubContributionsServiceImpl::class.java)
@@ -120,16 +127,30 @@ class GitHubContributionsServiceImpl(
             parameter("per_page", limit)
         }
         if (!response.status.isSuccess()) error("${response.status}")
-        response.body<List<CommitEntry>>().map {
+        response.body<List<CommitEntry>>().take(carrierLookups).map {
             Landed(
                 reference = it.sha.take(7),
                 title = it.commit.message.lineSequence().first(),
                 url = it.htmlUrl,
                 date = it.commit.author?.date?.take(10),
+                via = carrier(repo, it.sha),
             )
         }
     }.onFailure {
         logger.warn("Could not read commits for {}: {}", repo, it.message)
+    }.getOrNull()
+
+    /**
+     * The pull request a commit came in through. One extra call per commit, so
+     * it is only done for the handful shown when there is no pull request of
+     * mine to list.
+     */
+    private suspend fun carrier(repo: String, sha: String): Landed.Reference? = runCatching {
+        val response = client.get("https://api.github.com/repos/$repo/commits/$sha/pulls") { gitHub() }
+        if (!response.status.isSuccess()) return null
+        response.body<List<AssociatedPullRequest>>().firstOrNull()?.let {
+            Landed.Reference("#${it.number}", it.htmlUrl)
+        }
     }.getOrNull()
 
     private fun HttpRequestBuilder.gitHub() {

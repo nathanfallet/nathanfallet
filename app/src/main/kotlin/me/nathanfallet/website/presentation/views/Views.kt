@@ -125,6 +125,8 @@ data class LandedView(
     val title: String,
     val url: String,
     val date: String?,
+    val viaLabel: String?,
+    val viaUrl: String?,
 )
 
 data class RelatedGroupView(

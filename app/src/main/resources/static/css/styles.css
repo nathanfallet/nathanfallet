@@ -700,7 +700,7 @@ code {
     counter-reset: pr;
 }
 
-.pull-requests a {
+.pull-requests .pr-row {
     text-decoration: none;
     display: flex;
     flex-wrap: wrap;
@@ -713,8 +713,16 @@ code {
     transition: border-color 0.15s;
 }
 
-.pull-requests a:hover {
+.pull-requests .pr-row:hover {
     border-color: var(--accent);
+}
+
+.pull-requests a {
+    text-decoration: none;
+}
+
+.pull-requests .pr-meta a {
+    color: var(--accent);
 }
 
 .pull-requests .pr-title {

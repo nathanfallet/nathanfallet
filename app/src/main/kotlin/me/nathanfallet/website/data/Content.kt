@@ -352,11 +352,10 @@ val portfolio = portfolio {
         "cube-js/cube", "Cube",
         "The open source semantic layer for analytics.", 20501,
         note = """
-            <p>I migrated the MySQL driver from <code>mysql</code> to <code>mysql2</code>,
-            which fixed the <code>caching_sha2_password</code> failures on recent MySQL
-            servers. The commit was cherry-picked into another pull request, so it does not
-            show up in the list below — it landed as
-            <em>"feat(mysql-driver): Migrate driver to mysql2 library, thanks @nathanfallet"</em>.</p>
+            <p>I migrated the MySQL driver from <code>mysql</code> to <code>mysql2</code>, which
+            fixed the <code>caching_sha2_password</code> failures on recent MySQL servers. A
+            maintainer cherry-picked the change into their own release branch, so it landed as a
+            commit rather than a pull request of mine.</p>
         """.trimIndent(),
     )
     contribution("ktorio/ktor", "Ktor", "The Kotlin framework for connected applications.", 14495)
