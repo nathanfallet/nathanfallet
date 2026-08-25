@@ -65,6 +65,25 @@ val portfolio = portfolio {
         """.trimIndent()
     }
 
+    product("nutrimaxing") {
+        name = "NutriMaxing"
+        tagline = "Never wonder what to eat again: a full daily plan — meals, portions, shopping list — generated for you."
+        by = "Guimauve Digital"
+        appStore("6779967120")
+        playStore("me.nathanfallet.nutrimaxing")
+        poweredBy("amplitude-kmp", "experiment-kmp")
+        description = """
+            <p>Answer a few questions once, and NutriMaxing decides the rest: the meals of the day,
+            portions scaled to your goal, a walk, a workout, and the shopping list that goes with
+            the week. Built for people who will not log anything, so it is not another calorie
+            counter.</p>
+            <p>A Kotlin Multiplatform and Compose Multiplatform app for iOS and Android, running
+            entirely on device: the weekly plan is derived from the profile rather than stored, so
+            there is no backend and nothing to sync. Steps, sleep and weight come from HealthKit
+            and Health Connect, and the app ships in a dozen languages.</p>
+        """.trimIndent()
+    }
+
     // MARK: - Libraries
 
     library("kdriver") {
@@ -164,6 +183,23 @@ val portfolio = portfolio {
         """.trimIndent()
     }
 
+    library("asonar") {
+        name = "asonar"
+        tagline = "App Store Optimization radar: real keyword popularity and rankings, tracked over time, queryable by an LLM."
+        repo = "nathanfallet/asonar"
+        targets("Ktor", "Kotlin", "MCP")
+        description = """
+            <p>A self-hosted backend that reads the keyword popularity index and the ranking data the
+            app stores only expose to their advertisers, snapshots them into a database, and keeps the
+            history — so a release can be measured against what moved. The scraping runs on
+            <a href="/projects/kdriver">kdriver</a> and the fetch queue on
+            <a href="/projects/kourier">kourier</a>.</p>
+            <p>It ships an MCP server alongside the REST API, so the tracked keywords, the app ratings
+            and the suggestions can be asked for directly from an LLM. It is how I do the ASO of my
+            own apps.</p>
+        """.trimIndent()
+    }
+
     library("streamdeck-kotlin-sdk") {
         maven("me.nathanfallet.streamdeck", "streamdeck-kotlin-sdk")
         gradlePlugin("me.nathanfallet.streamdeck")
@@ -245,9 +281,46 @@ val portfolio = portfolio {
         targets("Multiplatform")
         description = """
             <p>The weekend end of the shelf. It powers
-            <a href="https://github.com/kotlinds/nds-music-player">nds-music-player</a>, a cross-platform
+            <a href="/projects/nds-music-player">nds-music-player</a>, a cross-platform
             player that loads any <code>.nds</code> ROM and plays its full soundtrack, on top of
-            <a href="https://github.com/kotlinds/fluidsynth-kmp">fluidsynth-kmp</a>.</p>
+            <a href="/projects/fluidsynth-kmp">fluidsynth-kmp</a>.</p>
+        """.trimIndent()
+    }
+
+    library("fluidsynth-kmp") {
+        maven("dev.kotlinds", "fluidsynth-kmp")
+        name = "fluidsynth-kmp"
+        tagline = "A Kotlin Multiplatform wrapper around FluidSynth, the real-time SF2 and MIDI synthesizer."
+        repo = "kotlinds/fluidsynth-kmp"
+        stars = 2
+        targets("Android", "iOS", "macOS", "Linux", "Windows", "JVM")
+        description = """
+            <p>One Kotlin API over FluidSynth, whatever it takes underneath: JNI and a bundled
+            <code>.so</code> on Android, cinterop against a bundled XCFramework on iOS, cinterop
+            against the system library on macOS, Linux and Windows, and JNA on the JVM. Android and
+            iOS carry the synthesizer with them, so nothing has to be installed alongside the app.</p>
+            <p>Written because <a href="/projects/kotlinds">kotlinds</a> could read the soundtracks
+            out of Nintendo DS ROMs, and nothing could play them.</p>
+        """.trimIndent()
+    }
+
+    library("nds-music-player") {
+        name = "NDS Music Player"
+        tagline = "Open any Nintendo DS ROM and play its whole soundtrack, on iOS, Android and desktop."
+        repo = "kotlinds/nds-music-player"
+        stars = 3
+        targets("iOS", "Android", "Desktop", "Compose")
+        appStore("6760873349")
+        playStore("me.nathanfallet.ndsmusicplayer")
+        link(LinkKind.DOWNLOAD, "Desktop build", "https://github.com/kotlinds/nds-music-player/releases")
+        description = """
+            <p>Drop in a <code>.nds</code> file and the whole soundtrack shows up, grouped by sound
+            archive, searchable, with playback controls, a loop count and a lock screen player.
+            Nothing is bundled with the app: everything comes out of the ROM you hand it.</p>
+            <p>The end of the chain the other two were written for:
+            <a href="/projects/kotlinds">kotlinds</a> parses the ROM and turns each track into MIDI
+            plus a soundfont, <a href="/projects/fluidsynth-kmp">fluidsynth-kmp</a> renders it to
+            audio, and a Compose Multiplatform app wraps the two on all three platforms.</p>
         """.trimIndent()
     }
 
