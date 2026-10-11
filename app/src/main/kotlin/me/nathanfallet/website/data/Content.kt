@@ -287,6 +287,62 @@ val portfolio = portfolio {
         """.trimIndent()
     }
 
+    library("ai-plays-pokemon") {
+        name = "AI Plays Pokémon"
+        tagline = "Let an AI play Pokémon in a Nintendo DS emulator, and watch it live."
+        repo = "kotlinds/ai-plays-pokemon"
+        stars = 2
+        targets("macOS", "Linux", "Windows", "JVM", "Compose", "MCP")
+        link(LinkKind.DOWNLOAD, "Desktop build", "https://github.com/kotlinds/ai-plays-pokemon/releases")
+        description = """
+            <p>A desktop app that puts an AI in front of Pokémon, with a live view of the game
+            and controls you can take over at any time. Connect an external agent through MCP,
+            or run an LLM or a decision model directly from the app.</p>
+            <p>Built on <a href="/projects/pokemon-client">pokemon-client</a> for typed game
+            state and actions, and <a href="/projects/libretro-kmp">libretro-kmp</a> for
+            emulation. Runs record progress, decisions, time and cost so different AI
+            configurations can be compared. Bring your own ROM.</p>
+        """.trimIndent()
+    }
+
+    library("pokemon-client") {
+        maven("dev.kotlinds", "pokemon-client")
+        maven("dev.kotlinds", "pokemon-client-libretro")
+        name = "pokemon-client"
+        tagline = "Read Pokémon games into a typed Kotlin model and play them through verified actions."
+        repo = "kotlinds/pokemon-client"
+        stars = 1
+        targets("JVM")
+        description = """
+            <p>A Kotlin Multiplatform client for Pokémon HeartGold, SoulSilver and Platinum,
+            currently targeting the JVM. It reads RAM and ROM data into a common model of the
+            screen, team, battle and world, then executes typed actions with verified button
+            presses and cursor movement.</p>
+            <p><a href="/projects/kotlinds">kotlinds</a> reads maps and game data from the ROM;
+            the libretro adapter uses <a href="/projects/libretro-kmp">libretro-kmp</a> to run
+            the emulator. The library powers <a href="/projects/ai-plays-pokemon">AI Plays
+            Pokémon</a>, with all gameplay going through buttons and the touch screen.</p>
+        """.trimIndent()
+    }
+
+    library("libretro-kmp") {
+        maven("dev.kotlinds", "libretro-kmp")
+        name = "libretro-kmp"
+        tagline = "Load and drive libretro emulator cores through one Kotlin Multiplatform API."
+        repo = "kotlinds/libretro-kmp"
+        stars = 1
+        targets("Android", "iOS", "macOS", "Linux", "Windows", "JVM")
+        description = """
+            <p>Run emulator frames, receive video and audio, send controller inputs, access
+            emulated memory, and save or restore states from Kotlin. Native targets use a
+            C interop or JNI bridge, while the JVM uses JNA. Emulator cores are loaded
+            separately at runtime.</p>
+            <p>The emulation layer underneath <a href="/projects/pokemon-client">pokemon-client</a>
+            and <a href="/projects/ai-plays-pokemon">AI Plays Pokémon</a>, reusable with
+            libretro cores for other consoles too.</p>
+        """.trimIndent()
+    }
+
     library("fluidsynth-kmp") {
         maven("dev.kotlinds", "fluidsynth-kmp")
         name = "fluidsynth-kmp"
