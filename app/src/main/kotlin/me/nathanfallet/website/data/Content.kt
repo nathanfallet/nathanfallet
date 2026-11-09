@@ -237,6 +237,25 @@ val portfolio = portfolio {
         targets("Multiplatform")
     }
 
+    library("teamcode") {
+        name = "TeamCode"
+        tagline = "An open-source, self-hosted model gateway for teams: pooled accounts, fair access, capacity forecasts."
+        repo = "nathanfallet/teamcode"
+        stars = 5
+        targets("Ktor", "macOS", "Linux", "Windows", "Compose", "MCP")
+        link(LinkKind.DOWNLOAD, "Latest release", "https://github.com/nathanfallet/teamcode/releases/latest")
+        description = """
+            <p>A gateway that sits between a team and its AI coding providers. It pools Claude and
+            Codex subscription accounts, shares them fairly between members with quotas and routing,
+            and forecasts capacity so nobody hits a limit by surprise. Administrators get a web
+            dashboard; members get a native Kotlin Multiplatform CLI with one-command installers
+            and signed updates, no JVM required.</p>
+            <p>It also ships a desktop app and companion apps, cloud and remote agent sessions, and
+            an MCP gateway. Self-hosted on JDK 21 and MySQL, Apache 2.0 licensed. It is what I use to
+            run my own agents day to day.</p>
+        """.trimIndent()
+    }
+
     library("pkg") {
         gradlePlugin("digital.guimauve.pkg")
         name = "pkg"
