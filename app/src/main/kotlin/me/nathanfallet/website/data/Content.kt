@@ -156,6 +156,26 @@ val portfolio = portfolio {
         targets("Android", "iOS", "Desktop", "Compose")
     }
 
+    library("kmp-vision-camera") {
+        maven("me.nathanfallet.visioncamera", "core")
+        name = "KMP Vision Camera"
+        tagline = "A high-performance camera library for Kotlin Multiplatform, on Android and iOS."
+        repo = "nathanfallet/kmp-vision-camera"
+        stars = 1
+        targets("Android", "iOS", "Compose", "Multiplatform")
+        website("https://visioncamera.nathanfallet.me", "Documentation")
+        description = """
+            <p>Full access to the native camera APIs (CameraX and Camera2 on Android, AVFoundation
+            on iOS) through a single Kotlin API: devices and their capabilities, sessions with
+            constraints, photo and video, and real-time frame processing with zero-copy native
+            buffers. Every asynchronous operation is a suspend function, and Compose is optional.</p>
+            <p>Optional modules add barcode scanning (ML Kit, Apple Vision), location, a GPU frame
+            resizer for ML models (Metal, Vulkan) and Skia rendering with SkSL shaders. It is a
+            Kotlin Multiplatform port of Marc Rousavy's React Native VisionCamera (V5), keeping the
+            same concepts and API, and is not affiliated with Margelo.</p>
+        """.trimIndent()
+    }
+
     library("ocaml") {
         name = "OCaml: Learn & Code"
         tagline = "An OCaml editor, top level and learning place for iOS, iPadOS and macOS."
